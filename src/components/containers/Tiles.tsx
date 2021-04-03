@@ -11,7 +11,7 @@ import {
   Settlement as SettlementInterface,
   RoadPiece,
   Robber,
-} from "catan_types/types";
+} from "../../../shared_types/types";
 import { socket } from "../../service/socket";
 
 const boardWidth = 7;
