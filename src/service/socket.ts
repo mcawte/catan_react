@@ -1,6 +1,6 @@
 import { io } from "socket.io-client"
 
-const socketUrl = "http://mcawte.com"
+const socketUrl = "https://mcawte.com"
 
 
 const localToken = localStorage.getItem('token')
