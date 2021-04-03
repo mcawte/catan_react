@@ -578,6 +578,9 @@ export default function BoardLogic({
           {/* The largest army is: {JSON.stringify(gameState.largestArmy)} */}
           <br />
           {`Your points are: ${gameState.player.points}`}
+          <br />
+          A road costs 1 brick and 1 forest. A town costs 1 brick, 1 forest, 1 sheep, and 1 wheat.
+          A city costs 3 stone and 2 wheat. A dev card costs 1 stone, 1 forest, and 1 wheat.
         </div>
       </div>
 
