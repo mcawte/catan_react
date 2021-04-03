@@ -34,7 +34,8 @@ export default function useChatMessages(
     });
 
     return () => {};
-  });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[socket]);
 
   return chatMessages.filter((room) => room.gameName === gameName);
 }

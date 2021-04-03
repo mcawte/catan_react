@@ -19,7 +19,8 @@ function App() {
     });
 
     return () => {};
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [socket]);
 
   //socket.current.emit("tokenSt", token)
 

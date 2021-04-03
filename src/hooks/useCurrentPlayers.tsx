@@ -27,7 +27,8 @@ export default function useChatMessages(
     return () => {
      // socket.disconnect();
     };
-  });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[socket]);
 
   
 
