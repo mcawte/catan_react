@@ -87,7 +87,8 @@ export default function BoardLogic({
       gameState
     );
     return () => {};
-  }, [boardUpdate, gameState]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [boardUpdate]);
 
   const robberDebtMet = (): boolean => {
     let resourceSelected =
