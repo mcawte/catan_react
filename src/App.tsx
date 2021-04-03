@@ -1,25 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { PublicGameState } from "catan_types/types";
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import BoardLogic from "./components/logic/BoardLogic";
+import { socket } from "./service/socket";
+import ChatLogic from "./components/logic/ChatLogic";
 
 function App() {
+  const [startGame, setStartGame] = useState(false);
+  const [gameState, setGameState] = useState<PublicGameState>();
+  //const [tiles, setTiles] = useState<TileInterface[]>([]);
+
+  useEffect(() => {
+    socket.on("beginGame", () => setStartGame(true));
+
+    socket.on("gameState", (msg: PublicGameState) => {
+      console.log("The new game state is: ", msg);
+      setGameState(msg);
+    });
+
+    return () => {};
+  }, [socket]);
+
+  //socket.current.emit("tokenSt", token)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {startGame && gameState !== undefined && setGameState !== undefined ? (
+        <BoardLogic
+          gameState={gameState}
+          setGameState={
+            setGameState as React.Dispatch<
+              React.SetStateAction<PublicGameState>
+            >
+          }
+        />
+      ) : (
+        <ChatLogic />
+      )}
+    </>
   );
 }
 
