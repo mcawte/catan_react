@@ -1,6 +1,6 @@
 import { io } from "socket.io-client"
 
-const socketUrl = process.env.SERVER || "localhost:3001"
+const socketUrl = process.env.SERVER || "mcawte.com"
 
 
 const localToken = localStorage.getItem('token')
