@@ -77,6 +77,10 @@ export default function BoardLogic({
   const [boardUpdate, setBoardUpdate] = useState(false);
   const itemTypes: ItemTypes[] = ["road", "town", "city", "devCard"];
 
+  useEffect(() => {
+    socket.on("openTradeModal", () => setTradeModal({open: true}))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[socket])
  
 
   useEffect(() => {
