@@ -94,7 +94,7 @@ export default function BoardLogic({
       gameState
     );
     return () => {};
-  }, [boardUpdate]);
+  }, [boardUpdate, gameState]);
 
   const robberDebtMet = (): boolean => {
     let resourceSelected =
