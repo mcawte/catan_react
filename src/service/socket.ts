@@ -2,7 +2,6 @@ import { io } from "socket.io-client"
 
 const socketUrl = "https://mcawte.com"
 
-
 const localToken = localStorage.getItem('token')
 
 console.log("The locally stored token is: ", localToken)
