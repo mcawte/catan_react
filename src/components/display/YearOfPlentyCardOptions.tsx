@@ -5,7 +5,7 @@ import {
   makeStyles,
   Paper,
 } from "@material-ui/core";
-import { PublicGameState } from "catan_types/types";
+import { PublicGameState } from "../../../shared_types/types";
 import React, { useState } from "react";
 import { socket } from "../../service/socket";
 

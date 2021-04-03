@@ -20,7 +20,7 @@ import {
 import { Send } from "@material-ui/icons";
 import useChatMessages from "../hooks/useChatMessages";
 import useCurrentPlayers from "../hooks/useCurrentPlayers";
-import { PublicGameState} from "catan_types/types";
+import { PublicGameState} from "../../shared_types/types";
 
 const useStyles = makeStyles({
   table: {

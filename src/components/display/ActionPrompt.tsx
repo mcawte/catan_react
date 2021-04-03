@@ -1,5 +1,5 @@
-import { PlayerColor } from "catan_types/types";
-import React from "react";
+import { PlayerColor } from "../../../shared_types/types";
+
 
 interface ActionPromptInterface {
   message: string;

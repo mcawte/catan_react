@@ -1,5 +1,5 @@
 import { Button, Container, Grid, TextField, makeStyles, Paper } from '@material-ui/core'
-import { PublicGameState } from 'catan_types/types';
+import { PublicGameState } from "../../../shared_types/types";
 import React from 'react'
 
 const useStyles = makeStyles({

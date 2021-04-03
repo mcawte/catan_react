@@ -7,7 +7,7 @@ import {
   Settlement as SettlementInterface,
   RoadPiece,
   Resources,
-} from "catan_types/types";
+} from "../../../shared_types/types";
 import {
   Button,
   Container,

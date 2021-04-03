@@ -7,7 +7,7 @@ import {
   GiStoneBlock,
   GiWoodPile,
 } from "react-icons/gi";
-import { PlayerColor, TradeType } from "catan_types/types";
+import { PlayerColor, TradeType } from "../../../shared_types/types";
 
 interface ShipProps {
   ship: {

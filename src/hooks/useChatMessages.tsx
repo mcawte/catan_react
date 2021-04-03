@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChatMessage } from "catan_types/types";
+import { ChatMessage } from "../../shared_types/types";
 import { socket } from "../service/socket";
 
 // interface ChatMessage {

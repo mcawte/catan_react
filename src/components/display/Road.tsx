@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PlayerColor } from "catan_types/types";
+import { PlayerColor } from "../../../shared_types/types";
 
 interface RoadProps {
   direction: string; // top, side, bottom
