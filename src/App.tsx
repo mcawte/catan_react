@@ -19,7 +19,7 @@ function App() {
     });
 
     return () => {};
-  }, [socket]);
+  }, []);
 
   //socket.current.emit("tokenSt", token)
 

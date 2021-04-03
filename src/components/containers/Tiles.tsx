@@ -55,7 +55,7 @@ export default function Tiles({
   updateSettlement,
   updateRobber,
 }: React.PropsWithChildren<NewBoardProps>) {
-  const { width, height } = useResize();
+  const { width } = useResize();
   const tileSize = (0.5 * width) / boardWidth;
 
   //const itemTypes: ItemTypes[] = ["road", "town", "city", "devCard"];

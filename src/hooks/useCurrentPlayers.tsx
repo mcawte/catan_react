@@ -27,7 +27,7 @@ export default function useChatMessages(
     return () => {
      // socket.disconnect();
     };
-  }, [socket]);
+  });
 
   
 
