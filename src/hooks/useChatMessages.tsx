@@ -34,7 +34,7 @@ export default function useChatMessages(
     });
 
     return () => {};
-  }, [socket]);
+  });
 
   return chatMessages.filter((room) => room.gameName === gameName);
 }
