@@ -77,14 +77,7 @@ export default function BoardLogic({
   const [boardUpdate, setBoardUpdate] = useState(false);
   const itemTypes: ItemTypes[] = ["road", "town", "city", "devCard"];
 
-  // useEffect(() => {
-  //   socket.on("openTradeModal", (msg: any) => {
-  //     console.log("Recieved message from server to open trade modal");
-  //     setTradeModal({ open: true });
-  //   });
-
-  //   return () => {};
-  // }, []);
+ 
 
   useEffect(() => {
     socket.emit(
