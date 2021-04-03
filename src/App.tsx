@@ -1,4 +1,4 @@
-import { PublicGameState } from "catan_types/types";
+import { PublicGameState } from "../shared_types/types";
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import BoardLogic from "./components/logic/BoardLogic";
