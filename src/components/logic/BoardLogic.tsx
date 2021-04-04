@@ -6,17 +6,10 @@ import {
   ItemTypes,
   Settlement as SettlementInterface,
   RoadPiece,
-  Resources,
   DevCardTypes,
 } from "../../../shared_types/types";
 import {
-  Button,
-  Container,
-  Grid,
-  makeStyles,
   Modal,
-  Paper,
-  TextField,
 } from "@material-ui/core";
 import GameChat from "../GameChat";
 import Tiles from "../containers/Tiles";
@@ -28,27 +21,7 @@ import YearOfPlentyCardOptions from "../display/YearOfPlentyCardOptions";
 import RobberOptions from "../display/RobberOptions";
 //import { RoadInterface } from "../types";
 
-const useStyles = makeStyles({
-  table: {
-    minHeight: "500px",
-  },
-  chatSection: {
-    width: "100%",
-    height: "80vh",
-    minHeight: "500px",
-  },
-  headBG: {
-    backgroundColor: "#e0e0e0",
-  },
-  borderRight500: {
-    borderRight: "1px solid #e0e0e0",
-  },
-  messageArea: {
-    height: "70vh",
-    minHeight: "400px",
-    overflowY: "auto",
-  },
-});
+
 
 interface BoardLogicProps {
   gameState: PublicGameState;
@@ -59,7 +32,6 @@ export default function BoardLogic({
   gameState,
   setGameState,
 }: React.PropsWithChildren<BoardLogicProps>) {
-  const classes = useStyles();
   const [tradeModal, setTradeModal] = useState({ open: false });
   const [modals, setModals] = useState({
     trade: false,
