@@ -48,7 +48,7 @@ export default function BoardLogic({
     forest: string;
     stone: string;
     brick: string;
-  } = {brick: `🧱`, forest: `🌲`, stone: `⛰️`, wheat: `🌾`, sheep: `🐏` }
+  } = {brick: "🧱", forest: "🌲", stone: "⛰️", wheat: "🌾", sheep: "🐏" }
 
 
   
@@ -538,7 +538,9 @@ export default function BoardLogic({
             ([key, value]) => `${key}: ${value}, `
           )} */}
           {Object.entries(gameState.player.inventory.resources).map(
-            ([key, value]) => `${key}: ${emojis[key].repeat(value)}, <br/>` 
+            ([key, value]) => {
+              return (<div>`${key}: ${emojis[key].repeat(value)}, `<br/></div>)
+            }
           )}
           {/* {JSON.stringify(gameState.player.inventory.resources)} */}
           <br />
