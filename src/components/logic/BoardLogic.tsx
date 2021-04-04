@@ -74,6 +74,16 @@ export default function BoardLogic({
     sheep: 0,
   };
 
+  const emojis: {
+    [key: string]: string;
+    wheat: string;
+    sheep: string;
+    forest: string;
+    stone: string;
+    brick: string;
+  } = {brick: "🧱",forest: "🌲", stone: "⛰️", wheat: "🌾", sheep: "🐏" }
+
+
   const [robberPayment, setRobberPayment] = useState(initialDebt);
   const [boardUpdate, setBoardUpdate] = useState(false);
   const itemTypes: ItemTypes[] = ["road", "town", "city", "devCard"];
@@ -572,8 +582,11 @@ export default function BoardLogic({
         </div>
         <div style={{ marginLeft: "60vw", marginTop: "4vh" }}>
           Resources:{" "}
-          {Object.entries(gameState.player.inventory.resources).map(
+          {/* {Object.entries(gameState.player.inventory.resources).map(
             ([key, value]) => `${key}: ${value}, `
+          )} */}
+          {Object.entries(gameState.player.inventory.resources).map(
+            ([key, value]) => `${key}: ${emojis[key].repeat(value)}, `
           )}
           {/* {JSON.stringify(gameState.player.inventory.resources)} */}
           <br />
