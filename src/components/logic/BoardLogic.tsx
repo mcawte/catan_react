@@ -7,6 +7,7 @@ import {
   Settlement as SettlementInterface,
   RoadPiece,
   Resources,
+  DevCardTypes,
 } from "../../../shared_types/types";
 import {
   Button,
@@ -24,6 +25,7 @@ import TradeOptions from "../display/TradeOptions";
 //import ShipTradeOptions from "../display/ShipTradeOptions";
 import MonopolyCardOptions from "../display/MonopolyCardOptions";
 import YearOfPlentyCardOptions from "../display/YearOfPlentyCardOptions";
+import { truncate } from "fs";
 //import { RoadInterface } from "../types";
 
 const useStyles = makeStyles({
@@ -78,10 +80,9 @@ export default function BoardLogic({
   const itemTypes: ItemTypes[] = ["road", "town", "city", "devCard"];
 
   useEffect(() => {
-    socket.on("openTradeModal", () => setTradeModal({open: true}))
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[socket])
- 
+    socket.on("openTradeModal", () => setTradeModal({ open: true }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [socket]);
 
   useEffect(() => {
     socket.emit(
@@ -91,7 +92,7 @@ export default function BoardLogic({
       gameState
     );
     return () => {};
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [boardUpdate]);
 
   const robberDebtMet = (): boolean => {
@@ -109,6 +110,33 @@ export default function BoardLogic({
     } else {
       return false;
     }
+  };
+
+  const isDevCardDisabled = (devCardKey: DevCardTypes): boolean => {
+    let disable = false;
+    if (gameState.playerTurn.stage < 4) {
+      disable = true;
+    } else if (gameState.playerTurn.stage === 0) {
+      disable = false;
+    }
+
+    if (
+      gameState.player.inventory.devCards[devCardKey].every(
+        (eachCard) => eachCard.roundReceived === gameState.round
+      )
+    ) {
+      disable = true;
+    }
+
+    if (
+      gameState.player.inventory.devCards[devCardKey].every(
+        (eachCard) => eachCard.roundReceived < eachCard.roundPlayed
+      )
+    ) {
+      disable = true;
+    }
+
+    return disable;
   };
 
   // roads should hover and be clickable only if player has a road
@@ -443,7 +471,8 @@ export default function BoardLogic({
               disabled={
                 !(
                   gameState.player.name === gameState.playerTurn.player.name &&
-                  gameState.playerTurn.stage > 3
+                  gameState.playerTurn.stage > 3 &&
+                  gameState.round > 1
                 )
               }
             >
@@ -480,17 +509,7 @@ export default function BoardLogic({
                           );
                         }
                       }}
-                      disabled={
-                        gameState.playerTurn.stage < 4 ||
-                        gameState.player.inventory.devCards[devCardKey].some(
-                          (eachCard) =>
-                            eachCard.roundReceived === gameState.round
-                        ) ||
-                        gameState.player.inventory.devCards[devCardKey].some(
-                          (eachCard) =>
-                            eachCard.roundReceived < eachCard.roundPlayed
-                        )
-                      }
+                      disabled={isDevCardDisabled(devCardKey as DevCardTypes)}
                     >
                       {`Play ${devCardKey} devCard`}
                     </button>
@@ -544,51 +563,59 @@ export default function BoardLogic({
         </div>
         <div style={{ marginLeft: "60vw", marginTop: "4vh" }}>
           Resources:{" "}
-          {Object.entries(gameState.player.inventory.resources).map(([key, value]) => 
-          `${key}: ${value}, `)
-          }
+          {Object.entries(gameState.player.inventory.resources).map(
+            ([key, value]) => `${key}: ${value}, `
+          )}
           {/* {JSON.stringify(gameState.player.inventory.resources)} */}
           <br />
           Played devCards:{" "}
-          {Object.entries(gameState.player.inventory.devCards).map(([key, value]) => {
-            
-          return `${key}: ${value.filter(eachValue => eachValue.roundPlayed > 0).length}, `
-          })
-          }
+          {Object.entries(gameState.player.inventory.devCards).map(
+            ([key, value]) => {
+              return `${key}: ${
+                value.filter((eachValue) => eachValue.roundPlayed > 0).length
+              }, `;
+            }
+          )}
           {/* {JSON.stringify(gameState.player.inventory.devCards)} */}
           <br />
           DevCards in hand:{" "}
-          {Object.entries(gameState.player.inventory.devCards).map(([key, value]) => {
-            
-            return `${key}: ${value.filter(eachValue => eachValue.roundPlayed === 0).length}, `
-            })}
+          {Object.entries(gameState.player.inventory.devCards).map(
+            ([key, value]) => {
+              return `${key}: ${
+                value.filter((eachValue) => eachValue.roundPlayed === 0).length
+              }, `;
+            }
+          )}
           <br />
           {/* Your roads, towns, and cities are:{" "} */}
-          Roads: {JSON.stringify(gameState.player.inventory.roads)},
-          Towns: {JSON.stringify(gameState.player.inventory.towns)},
-          Cities: {JSON.stringify(gameState.player.inventory.cities)}
+          Roads: {JSON.stringify(gameState.player.inventory.roads)}, Towns:{" "}
+          {JSON.stringify(gameState.player.inventory.towns)}, Cities:{" "}
+          {JSON.stringify(gameState.player.inventory.cities)}
           <br />
-          {gameState.longestRoad.playerName !== "" ?
-          `The longest road belongs to ${gameState.longestRoad.playerName} and is ${gameState.longestRoad.playerName.length} pieces long.)` : null
-}
+          {gameState.longestRoad.playerName !== ""
+            ? `The longest road belongs to ${gameState.longestRoad.playerName} and is ${gameState.longestRoad.length} pieces long.)`
+            : null}
           <br />
-          {gameState.largestArmy.playerName !== "" ? 
-          `The largest army belongs to ${gameState.largestArmy.playerName} and is ${gameState.largestArmy.playerName.length} units strong.)` : null
-}
+          {gameState.largestArmy.playerName !== ""
+            ? `The largest army belongs to ${gameState.largestArmy.playerName} and is ${gameState.largestArmy.size} units strong.)`
+            : null}
           {/* The largest army is: {JSON.stringify(gameState.largestArmy)} */}
           <br />
           {`Your points are: ${gameState.player.points}`}
           <br />
           <br />
+          {`You have ${gameState.player.inventory.devCards.victory.length} victory points.`}
+          <br />
+          <br />
           {`There are ${gameState.resourceCards} resource cards left and ${gameState.devCards} devCards left.`}
           <br />
           Road cost: 1 brick and 1 forest.
-          <br /> 
+          <br />
           Town cost: 1 brick, 1 forest, 1 sheep, and 1 wheat.
           <br />
           City cost: 3 stone and 2 wheat.
           <br />
-           Dev card costs: 1 stone, 1 forest, and 1 wheat.
+          Dev card costs: 1 stone, 1 forest, and 1 wheat.
         </div>
       </div>
 
@@ -644,7 +671,9 @@ export default function BoardLogic({
                       forest: parseInt(e.target.value),
                     }))
                   }
-                />
+                >
+                  {`You have ${gameState.player.inventory.resources["forest"]} forest`}
+                </TextField>
                 <TextField
                   id="brick"
                   name="brick"
@@ -664,7 +693,9 @@ export default function BoardLogic({
                       brick: parseInt(e.target.value),
                     }))
                   }
-                />
+                >
+                {`You have ${gameState.player.inventory.resources["brick"]} brick`}
+                </TextField>
                 <TextField
                   id="sheep"
                   name="sheep"
@@ -684,7 +715,9 @@ export default function BoardLogic({
                       sheep: parseInt(e.target.value),
                     }))
                   }
-                />
+                >
+                {`You have ${gameState.player.inventory.resources["sheep"]} sheep`}
+                </TextField>
                 <TextField
                   id="stone"
                   name="stone"
@@ -704,7 +737,9 @@ export default function BoardLogic({
                       stone: parseInt(e.target.value),
                     }))
                   }
-                />
+                >
+                {`You have ${gameState.player.inventory.resources["stone"]} stone`}
+                </TextField>
                 <TextField
                   id="wheat"
                   name="wheat"
@@ -724,7 +759,9 @@ export default function BoardLogic({
                       wheat: parseInt(e.target.value),
                     }))
                   }
-                />
+                >
+                {`You have ${gameState.player.inventory.resources["wheat"]} wheat`}
+                </TextField>
                 <Button
                   color="primary"
                   variant="contained"
@@ -736,7 +773,9 @@ export default function BoardLogic({
                       robberPayment
                     )
                   }
-                  disabled={!robberDebtMet()}
+                  disabled={!robberDebtMet() || gameState.robber.robberDebt!.find(
+                    (player) => player.playerName === gameState.player.name
+                  )!.complete}
                 >
                   Pay Robber
                 </Button>
