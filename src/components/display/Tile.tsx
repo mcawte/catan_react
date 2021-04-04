@@ -140,6 +140,6 @@ interface TileContainerProps {
 }
 
 
-export const TileContainer = styled.h2<TileContainerProps>`
+export const TileContainer = styled.h1<TileContainerProps>`
 font-size: ${(props) => props.tileWidth / 8}px;
 `;
