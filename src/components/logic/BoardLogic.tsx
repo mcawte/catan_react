@@ -76,7 +76,7 @@ export default function BoardLogic({
     forest: string;
     stone: string;
     brick: string;
-  } = {brick: "🧱",forest: "🌲", stone: "⛰️", wheat: "🌾", sheep: "🐏" }
+  } = {brick: `🧱`, forest: `🌲`, stone: `⛰️`, wheat: `🌾`, sheep: `🐏` }
 
 
   

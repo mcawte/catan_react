@@ -40,14 +40,14 @@ import {
   }: RobberOptionsProps) {
     const classes = useStyles();
 
-const emojis: {
+    const emojis: {
         [key: string]: string;
         wheat: string;
         sheep: string;
         forest: string;
         stone: string;
         brick: string;
-      } = {brick: "🧱",forest: "🌲", stone: "⛰️", wheat: "🌾", sheep: "🐏" }
+      } = {brick: `🧱`, forest: `🌲`, stone: `⛰️`, wheat: `🌾`, sheep: `🐏` }
     
 
     const initialDebt: Resources = {
@@ -240,6 +240,15 @@ const emojis: {
               {`You have ${gameState.player.inventory.resources["stone"]} ⛰️`}
               <br/>
               {`You have ${gameState.player.inventory.resources["wheat"]} 🌾`}
+              Resources:{" "}<br/>
+          {/* {Object.entries(gameState.player.inventory.resources).map(
+            ([key, value]) => `${key}: ${value}, `
+          )} */}
+          {Object.entries(gameState.player.inventory.resources).map(
+            ([key, value]) => `${key}: ${emojis[key].repeat(value)}, <br/>` 
+          )}
+          {/* {JSON.stringify(gameState.player.inventory.resources)} */}
+          <br />
             </Grid>
           </Grid>
         </Container>
