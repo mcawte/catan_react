@@ -93,7 +93,7 @@ export default function YearOfPlentyOptions({
                   yearOfPlenty.resourceChoice1,
                   yearOfPlenty.resourceChoice2
                 );
-                setModals((prevState) => ({ ...prevState, monopoly: false }));
+                setModals((prevState) => ({ ...prevState, yearOfPlenty: false }));
               }}
             >
               {`Take both resource cards from bank`}
