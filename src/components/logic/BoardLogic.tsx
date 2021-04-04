@@ -681,7 +681,7 @@ export default function BoardLogic({
                     }))
                   }
                 >
-                  {`You have ${gameState.player.inventory.resources["forest"]} forest`}
+                  
                 </TextField>
                 <TextField
                   id="brick"
@@ -703,7 +703,7 @@ export default function BoardLogic({
                     }))
                   }
                 >
-                {`You have ${gameState.player.inventory.resources["brick"]} brick`}
+                
                 </TextField>
                 <TextField
                   id="sheep"
@@ -725,7 +725,7 @@ export default function BoardLogic({
                     }))
                   }
                 >
-                {`You have ${gameState.player.inventory.resources["sheep"]} sheep`}
+                
                 </TextField>
                 <TextField
                   id="stone"
@@ -747,7 +747,7 @@ export default function BoardLogic({
                     }))
                   }
                 >
-                {`You have ${gameState.player.inventory.resources["stone"]} stone`}
+               
                 </TextField>
                 <TextField
                   id="wheat"
@@ -769,8 +769,9 @@ export default function BoardLogic({
                     }))
                   }
                 >
-                {`You have ${gameState.player.inventory.resources["wheat"]} wheat`}
+                
                 </TextField>
+                
                 <Button
                   color="primary"
                   variant="contained"
@@ -795,6 +796,13 @@ export default function BoardLogic({
                   )!.cardsRequired
                 }{" "}
                 resource cards.
+              </Grid>
+              <Grid item xs={2} className={classes.borderRight500}>
+              {`You have ${gameState.player.inventory.resources["forest"]} forest`}
+                {`You have ${gameState.player.inventory.resources["brick"]} brick`}
+                {`You have ${gameState.player.inventory.resources["sheep"]} sheep`}
+                {`You have ${gameState.player.inventory.resources["stone"]} stone`}
+                {`You have ${gameState.player.inventory.resources["wheat"]} wheat`}
               </Grid>
             </Grid>
           </Container>
