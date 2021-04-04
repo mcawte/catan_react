@@ -156,6 +156,8 @@ export interface PublicGameState {
   currentTrade: Trade;
   round: number;
   robber: Robber;
+  devCards: number;
+  resourceCards: number;
 }
 
 export interface Resources {
