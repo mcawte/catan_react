@@ -25,6 +25,7 @@ import TradeOptions from "../display/TradeOptions";
 //import ShipTradeOptions from "../display/ShipTradeOptions";
 import MonopolyCardOptions from "../display/MonopolyCardOptions";
 import YearOfPlentyCardOptions from "../display/YearOfPlentyCardOptions";
+import RobberOptions from "../display/RobberOptions";
 //import { RoadInterface } from "../types";
 
 const useStyles = makeStyles({
@@ -66,13 +67,7 @@ export default function BoardLogic({
     yearOfPlenty: false,
   });
 
-  const initialDebt: Resources = {
-    wheat: 0,
-    forest: 0,
-    stone: 0,
-    brick: 0,
-    sheep: 0,
-  };
+
 
   const emojis: {
     [key: string]: string;
@@ -84,7 +79,7 @@ export default function BoardLogic({
   } = {brick: "🧱",forest: "🌲", stone: "⛰️", wheat: "🌾", sheep: "🐏" }
 
 
-  const [robberPayment, setRobberPayment] = useState(initialDebt);
+  
   const [boardUpdate, setBoardUpdate] = useState(false);
   const itemTypes: ItemTypes[] = ["road", "town", "city", "devCard"];
 
@@ -104,22 +99,7 @@ export default function BoardLogic({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [boardUpdate]);
 
-  const robberDebtMet = (): boolean => {
-    let resourceSelected =
-      robberPayment.brick +
-      robberPayment.forest +
-      robberPayment.sheep +
-      robberPayment.stone +
-      robberPayment.wheat;
-    let cardsRequired = gameState.robber.robberDebt.find(
-      (player) => player.playerName === gameState.player.name
-    )!.cardsRequired;
-    if (resourceSelected === cardsRequired && cardsRequired !== 0) {
-      return true;
-    } else {
-      return false;
-    }
-  };
+
 
   const isDevCardDisabled = (devCardKey: DevCardTypes): boolean => {
     let disable = false;
@@ -581,12 +561,12 @@ export default function BoardLogic({
             : null}
         </div>
         <div style={{ marginLeft: "60vw", marginTop: "4vh" }}>
-          Resources:{" "}
+          Resources:{" "}<br/>
           {/* {Object.entries(gameState.player.inventory.resources).map(
             ([key, value]) => `${key}: ${value}, `
           )} */}
           {Object.entries(gameState.player.inventory.resources).map(
-            ([key, value]) => `${key}: ${emojis[key].repeat(value)}, `
+            ([key, value]) => `${key}: ${emojis[key].repeat(value)}, <br/>` 
           )}
           {/* {JSON.stringify(gameState.player.inventory.resources)} */}
           <br />
@@ -660,170 +640,7 @@ export default function BoardLogic({
         aria-labelledby="robber modal"
         aria-describedby="modal to lose resource from robber"
       >
-        <>
-          <Container maxWidth="md">
-            <Grid container component={Paper} className={classes.chatSection}>
-              <Grid item xs={2} className={classes.borderRight500}>
-                {gameState.robber.robberDebt.map((robber) => (
-                  <Button
-                    color={robber.complete ? "primary" : "secondary"}
-                    variant="contained"
-                  >
-                    {robber.playerName}
-                  </Button>
-                ))}
-              </Grid>
-              <Grid item xs={2} className={classes.borderRight500}>
-                <TextField
-                  id="forest"
-                  name="forest"
-                  label="forest"
-                  type="number"
-                  InputProps={{
-                    inputProps: {
-                      max: gameState.player.inventory.resources.forest,
-                      min: 0,
-                    },
-                  }}
-                  fullWidth
-                  value={robberPayment.forest}
-                  onChange={(e) =>
-                    setRobberPayment((prevState) => ({
-                      ...prevState,
-                      forest: parseInt(e.target.value),
-                    }))
-                  }
-                >
-                  
-                </TextField>
-                <TextField
-                  id="brick"
-                  name="brick"
-                  label="brick"
-                  type="number"
-                  InputProps={{
-                    inputProps: {
-                      max: gameState.player.inventory.resources.brick,
-                      min: 0,
-                    },
-                  }}
-                  fullWidth
-                  value={robberPayment.brick}
-                  onChange={(e) =>
-                    setRobberPayment((prevState) => ({
-                      ...prevState,
-                      brick: parseInt(e.target.value),
-                    }))
-                  }
-                >
-                
-                </TextField>
-                <TextField
-                  id="sheep"
-                  name="sheep"
-                  label="sheep"
-                  type="number"
-                  InputProps={{
-                    inputProps: {
-                      max: gameState.player.inventory.resources.sheep,
-                      min: 0,
-                    },
-                  }}
-                  fullWidth
-                  value={robberPayment.sheep}
-                  onChange={(e) =>
-                    setRobberPayment((prevState) => ({
-                      ...prevState,
-                      sheep: parseInt(e.target.value),
-                    }))
-                  }
-                >
-                
-                </TextField>
-                <TextField
-                  id="stone"
-                  name="stone"
-                  label="stone"
-                  type="number"
-                  InputProps={{
-                    inputProps: {
-                      max: gameState.player.inventory.resources.stone,
-                      min: 0,
-                    },
-                  }}
-                  fullWidth
-                  value={robberPayment.stone}
-                  onChange={(e) =>
-                    setRobberPayment((prevState) => ({
-                      ...prevState,
-                      stone: parseInt(e.target.value),
-                    }))
-                  }
-                >
-               
-                </TextField>
-                <TextField
-                  id="wheat"
-                  name="wheat"
-                  label="wheat"
-                  type="number"
-                  InputProps={{
-                    inputProps: {
-                      max: gameState.player.inventory.resources.wheat,
-                      min: 0,
-                    },
-                  }}
-                  fullWidth
-                  value={robberPayment.wheat}
-                  onChange={(e) =>
-                    setRobberPayment((prevState) => ({
-                      ...prevState,
-                      wheat: parseInt(e.target.value),
-                    }))
-                  }
-                >
-                
-                </TextField>
-                
-                <Button
-                  color="primary"
-                  variant="contained"
-                  onClick={() =>
-                    socket.emit(
-                      "payRobberDebt",
-                      gameState.gameName,
-                      gameState.player.name,
-                      robberPayment
-                    )
-                  }
-                  disabled={!robberDebtMet() || gameState.robber.robberDebt!.find(
-                    (player) => player.playerName === gameState.player.name
-                  )!.complete}
-                >
-                  Pay Robber
-                </Button>
-                You must pay{" "}
-                {
-                  gameState.robber.robberDebt!.find(
-                    (player) => player.playerName === gameState.player.name
-                  )!.cardsRequired
-                }{" "}
-                resource cards.
-              </Grid>
-              <Grid item xs={2} className={classes.borderRight500}>
-              {`You have ${gameState.player.inventory.resources["forest"]} 🌲`}
-              <br/>
-                {`You have ${gameState.player.inventory.resources["brick"]} 🧱`}
-                <br/>
-                {`You have ${gameState.player.inventory.resources["sheep"]} 🐏`}
-                <br/>
-                {`You have ${gameState.player.inventory.resources["stone"]} ⛰️`}
-                <br/>
-                {`You have ${gameState.player.inventory.resources["wheat"]} 🌾`}
-              </Grid>
-            </Grid>
-          </Container>
-        </>
+        <RobberOptions gameState={gameState}></RobberOptions>
       </Modal>
 
       <Modal
