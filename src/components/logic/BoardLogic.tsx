@@ -532,14 +532,14 @@ export default function BoardLogic({
               ))
             : null}
         </div>
-        <div style={{ marginLeft: "60vw", marginTop: "4vh", fontSize: "1.5rem" }}>
+        <div style={{ marginLeft: "60vw", marginTop: "4vh"}}>
           Resources:{" "}<br/>
           {/* {Object.entries(gameState.player.inventory.resources).map(
             ([key, value]) => `${key}: ${value}, `
           )} */}
           {Object.entries(gameState.player.inventory.resources).map(
             ([key, value]) => {
-              return (<div>{`${key}: ${`${emojis[key]} `.repeat(value)}`}<br/></div>)
+              return (<div style={{  fontSize: "1.5rem" }}>{`${key}: ${`${emojis[key]} `.repeat(value)}`}<br/></div>)
             }
           )}
           {/* {JSON.stringify(gameState.player.inventory.resources)} */}
