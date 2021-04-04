@@ -532,7 +532,7 @@ export default function BoardLogic({
               ))
             : null}
         </div>
-        <div style={{ marginLeft: "60vw", marginTop: "4vh" }}>
+        <div style={{ marginLeft: "60vw", marginTop: "4vh", fontSize: "1.5rem" }}>
           Resources:{" "}<br/>
           {/* {Object.entries(gameState.player.inventory.resources).map(
             ([key, value]) => `${key}: ${value}, `
