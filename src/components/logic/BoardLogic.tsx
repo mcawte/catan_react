@@ -539,7 +539,7 @@ export default function BoardLogic({
           )} */}
           {Object.entries(gameState.player.inventory.resources).map(
             ([key, value]) => {
-              return (<div style={{  fontSize: "1.5rem" }}>{`${key}: ${`${emojis[key]} `.repeat(value)}`}<br/></div>)
+              return (<div >{`${key}: `} <div style={{  fontSize: "1.5rem" }}>` {`${`${emojis[key]} `.repeat(value)}`}</div><br/></div>)
             }
           )}
           {/* {JSON.stringify(gameState.player.inventory.resources)} */}

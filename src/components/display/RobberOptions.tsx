@@ -231,7 +231,7 @@ import {
               resource cards.
             </Grid>
             <Grid item xs={2} className={classes.borderRight500}>
-            {`You have ${gameState.player.inventory.resources["forest"]} 🌲`}
+            {/* {`You have ${gameState.player.inventory.resources["forest"]} 🌲`}
             <br/>
               {`You have ${gameState.player.inventory.resources["brick"]} 🧱`}
               <br/>
@@ -239,14 +239,14 @@ import {
               <br/>
               {`You have ${gameState.player.inventory.resources["stone"]} ⛰️`}
               <br/>
-              {`You have ${gameState.player.inventory.resources["wheat"]} 🌾`}
+              {`You have ${gameState.player.inventory.resources["wheat"]} 🌾`} */}
               Resources:{" "}<br/>
           {/* {Object.entries(gameState.player.inventory.resources).map(
             ([key, value]) => `${key}: ${value}, `
           )} */}
           {Object.entries(gameState.player.inventory.resources).map(
             ([key, value]) => {
-              return (<div>{`${key}: ${`${emojis[key]} `.repeat(value)}`}<br/></div>)
+              return (<div >{`${key}: `} <div style={{  fontSize: "1.5rem" }}>` {`${`${emojis[key]} `.repeat(value)}`}</div><br/></div>)
             }
           )}
             </Grid>
