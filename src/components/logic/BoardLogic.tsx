@@ -579,6 +579,9 @@ export default function BoardLogic({
           <br />
           {`Your points are: ${gameState.player.points}`}
           <br />
+          <br />
+          {`There are ${gameState.resourceCards} resource cards left and ${gameState.devCards} devCards left.`}
+          <br />
           Road cost: 1 brick and 1 forest.
           <br /> 
           Town cost: 1 brick, 1 forest, 1 sheep, and 1 wheat.
