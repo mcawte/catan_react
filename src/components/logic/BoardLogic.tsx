@@ -481,11 +481,11 @@ export default function BoardLogic({
                         }
                       }}
                       disabled={
-                        gameState.playerTurn.stage < 4 &&
+                        gameState.playerTurn.stage < 4 ||
                         gameState.player.inventory.devCards[devCardKey].some(
                           (eachCard) =>
                             eachCard.roundReceived === gameState.round
-                        ) &&
+                        ) ||
                         gameState.player.inventory.devCards[devCardKey].some(
                           (eachCard) =>
                             eachCard.roundReceived < eachCard.roundPlayed
