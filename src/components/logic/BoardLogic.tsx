@@ -135,6 +135,14 @@ export default function BoardLogic({
       disable = true;
     }
 
+    if (
+      gameState.player.inventory.devCards[devCardKey].some(
+        (eachCard) => eachCard.roundReceived === eachCard.roundPlayed
+      )
+    ) {
+      disable = true;
+    }
+
     return disable;
   };
 
