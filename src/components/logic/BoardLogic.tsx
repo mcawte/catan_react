@@ -602,11 +602,11 @@ export default function BoardLogic({
           {JSON.stringify(gameState.player.inventory.cities)}
           <br />
           {gameState.longestRoad.playerName !== ""
-            ? `The longest road belongs to ${gameState.longestRoad.playerName} and is ${gameState.longestRoad.length} pieces long.)`
+            ? `The longest road belongs to ${gameState.longestRoad.playerName} and is ${gameState.longestRoad.length} pieces long.`
             : null}
           <br />
           {gameState.largestArmy.playerName !== ""
-            ? `The largest army belongs to ${gameState.largestArmy.playerName} and is ${gameState.largestArmy.size} units strong.)`
+            ? `The largest army belongs to ${gameState.largestArmy.playerName} and is ${gameState.largestArmy.size} units strong.`
             : null}
           {/* The largest army is: {JSON.stringify(gameState.largestArmy)} */}
           <br />
@@ -618,13 +618,13 @@ export default function BoardLogic({
           <br />
           {`There are ${gameState.resourceCards} resource cards left and ${gameState.devCards} devCards left.`}
           <br />
-          Road cost: 1 brick and 1 forest.
+          Road cost: 1 🧱, 1 🌲.
           <br />
-          Town cost: 1 brick, 1 forest, 1 sheep, and 1 wheat.
+          Town cost: 1 🧱, 1 🌲, 1 🐏,  1 🌾.
           <br />
-          City cost: 3 stone and 2 wheat.
+          City cost: 3 💎 and 2 🌾.
           <br />
-          Dev card costs: 1 stone, 1 forest, and 1 wheat.
+          Dev card costs: 1 💎, 1 🐏,  1🌾.
         </div>
       </div>
 
