@@ -618,13 +618,13 @@ export default function BoardLogic({
           <br />
           {`There are ${gameState.resourceCards} resource cards left and ${gameState.devCards} devCards left.`}
           <br />
-          Road cost: 1 🧱, 1 🌲.
+          Road cost: 🧱 🌲
           <br />
-          Town cost: 1 🧱, 1 🌲, 1 🐏,  1 🌾.
+          Town cost: 🧱 🌲 🐏 🌾
           <br />
-          City cost: 3 💎 and 2 🌾.
+          City cost: ⛰️ ⛰️ ⛰️ 🌾 🌾
           <br />
-          Dev card costs: 1 💎, 1 🐏,  1🌾.
+          Dev card costs:  💎 🐏 🌾
         </div>
       </div>
 
@@ -798,11 +798,15 @@ export default function BoardLogic({
                 resource cards.
               </Grid>
               <Grid item xs={2} className={classes.borderRight500}>
-              {`You have ${gameState.player.inventory.resources["forest"]} forest`}
-                {`You have ${gameState.player.inventory.resources["brick"]} brick`}
-                {`You have ${gameState.player.inventory.resources["sheep"]} sheep`}
-                {`You have ${gameState.player.inventory.resources["stone"]} stone`}
-                {`You have ${gameState.player.inventory.resources["wheat"]} wheat`}
+              {`You have ${gameState.player.inventory.resources["forest"]} 🌲`}
+              <br/>
+                {`You have ${gameState.player.inventory.resources["brick"]} 🧱`}
+                <br/>
+                {`You have ${gameState.player.inventory.resources["sheep"]} 🐏`}
+                <br/>
+                {`You have ${gameState.player.inventory.resources["stone"]} ⛰️`}
+                <br/>
+                {`You have ${gameState.player.inventory.resources["wheat"]} 🌾`}
               </Grid>
             </Grid>
           </Container>
