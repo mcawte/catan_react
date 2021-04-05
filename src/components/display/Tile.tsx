@@ -95,7 +95,7 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
               >
                 {props.robber ? (
                   <Robber tileWidth={tileWidth}>
-                    <GiRobber size="1.2x" > <span style={{color: "black"}}><GiRobber size="1.1x" /></span></GiRobber>
+                    <GiRobber style={{fontSize: "1.5x", color: "black"}} > <GiRobber style={{fontSize: "1.5x", color: "white"}} /></GiRobber>
                     
                   </Robber>
                 ) : (
