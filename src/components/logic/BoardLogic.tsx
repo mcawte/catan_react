@@ -655,7 +655,7 @@ export default function BoardLogic({
           <br />
           City cost: <span style={{ fontSize: "1.5rem" }}>⛰️ ⛰️ ⛰️ 🌾 🌾</span>
           <br />
-          Dev card costs: <span style={{ fontSize: "1.5rem" }}>💎 🐏 🌾</span>
+          Dev card costs: <span style={{ fontSize: "1.5rem" }}>⛰️ 🐏 🌾</span>
         </div>
       
 
