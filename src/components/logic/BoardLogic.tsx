@@ -475,6 +475,7 @@ export default function BoardLogic({
             End Turn
           </button>
         </div>
+        </div>
 
         <div style={{ marginLeft: "60vw", marginTop: "1vh" }}>
           {itemTypes.map((itemToBuy) => (
