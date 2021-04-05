@@ -118,7 +118,9 @@ export default function BoardLogic({
     let disable = false;
     if (gameState.playerTurn.stage < 4) {
       disable = true;
-    } else if (gameState.playerTurn.stage === 0) {
+    } 
+    
+    if (gameState.playerTurn.stage === 0) {
       disable = false;
     }
 
@@ -406,7 +408,7 @@ export default function BoardLogic({
       <div>
         <div
           style={{
-            marginLeft: "60vw",
+            marginLeft: "55vw",
             marginTop: "8vh",
           }}
         >
@@ -416,7 +418,7 @@ export default function BoardLogic({
             dice2={gameState?.diceRoll.dice2}
           />
           </div>
-          <div>
+          <div style={{ marginLeft: "55vw", marginTop: "1vh" }}>
           <button
             onClick={() =>
               socket.emit(
@@ -477,7 +479,7 @@ export default function BoardLogic({
         </div>
         </div>
 
-        <div style={{ marginLeft: "60vw", marginTop: "1vh" }}>
+        <div style={{ marginLeft: "55vw", marginTop: "1vh" }}>
           {itemTypes.map((itemToBuy) => (
             <button
               onClick={() =>
@@ -495,7 +497,7 @@ export default function BoardLogic({
           ))}
         </div>
         {/* dev cards here */}
-        <div style={{ marginLeft: "60vw", marginTop: "1vh" }}>
+        <div style={{ marginLeft: "55vw", marginTop: "1vh" }}>
           {gameState.playerTurn.player.name === gameState.player.name &&
           gameState.playerTurn.stage > 3
             ? Object.keys(gameState.player.inventory.devCards).map(
@@ -533,7 +535,7 @@ export default function BoardLogic({
             : null}
         </div>
         {/* here */}
-        <div style={{ marginLeft: "60vw", marginTop: "4vh" }}>
+        <div style={{ marginLeft: "55vw", marginTop: "4vh" }}>
           {gameState.playerTurn.player.name === gameState.player.name &&
           gameState.playerTurn.stage === 2 ? (
             <button
@@ -556,7 +558,7 @@ export default function BoardLogic({
             </button>
           ) : null}
         </div>
-        <div style={{ marginLeft: "60vw", marginTop: "1vh" }}>
+        <div style={{ marginLeft: "55vw", marginTop: "1vh" }}>
           {gameState.playerTurn.player.name === gameState.player.name &&
           gameState.playerTurn.stage === 3
             ? gameState.robber.playersToStealFrom.map((playerToStealFrom) => (
@@ -575,7 +577,7 @@ export default function BoardLogic({
               ))
             : null}
         </div>
-        <div style={{ marginLeft: "60vw", marginTop: "4vh" }}>
+        <div style={{ marginLeft: "55vw", marginTop: "4vh" }}>
           <Grid container justify="flex-start" spacing={2} direction="row">
             <Grid item>
               Resources: <br />

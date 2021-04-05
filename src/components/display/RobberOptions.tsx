@@ -79,17 +79,7 @@ export default function RobberOptions({ gameState }: RobberOptionsProps) {
       <Container maxWidth="md">
         <Grid container component={Paper} className={classes.chatSection}>
           <Grid item xs={2} className={classes.borderRight500}>
-            {gameState.robber.robberDebt.map((robber) => (
-              <Button
-                color={robber.complete ? "primary" : "secondary"}
-                variant="contained"
-              >
-                {robber.playerName}
-              </Button>
-            ))}
-          </Grid>
-          <Grid item xs={2} className={classes.borderRight500}>
-          <TextField
+            <TextField
               id="wheat"
               name="wheat"
               label="wheat"
@@ -149,8 +139,7 @@ export default function RobberOptions({ gameState }: RobberOptionsProps) {
                 }))
               }
             />
-            
-            
+
             <TextField
               id="stone"
               name="stone"
@@ -191,52 +180,55 @@ export default function RobberOptions({ gameState }: RobberOptionsProps) {
                 }))
               }
             />
-            
-            <Button
-              color="primary"
-              variant="contained"
-              onClick={() =>
-                socket.emit(
-                  "payRobberDebt",
-                  gameState.gameName,
-                  gameState.player.name,
-                  robberPayment
-                )
-              }
-              disabled={
-                !robberDebtMet() ||
-                gameState.robber.robberDebt!.find(
-                  (player) => player.playerName === gameState.player.name
-                )!.complete
-              }
-            >
-              Pay Robber
-            </Button>
-            You must pay{" "}
-            {
+            <Grid item xs={10} className={classes.borderRight500}>
+              {Object.entries(gameState.player.inventory.resources).map(
+                ([key, value]) => {
+                  return (
+                    <div>
+                      {`${key}: `}{" "}
+                      <span style={{ fontSize: "1.5rem" }}>
+                        {" "}
+                        {`${`${emojis[key]} `.repeat(value)}`}
+                      </span>
+                      <br />
+                    </div>
+                  );
+                }
+              )}
+            </Grid>
+          </Grid>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() =>
+              socket.emit(
+                "payRobberDebt",
+                gameState.gameName,
+                gameState.player.name,
+                robberPayment
+              )
+            }
+            disabled={
+              !robberDebtMet() ||
               gameState.robber.robberDebt!.find(
                 (player) => player.playerName === gameState.player.name
-              )!.cardsRequired
-            }{" "}
-            resource cards.
-          </Grid>
-          <Grid item xs={10} className={classes.borderRight500}>
-            
-            {Object.entries(gameState.player.inventory.resources).map(
-              ([key, value]) => {
-                return (
-                  <div>
-                    {`${key}: `}{" "}
-                    <span style={{ fontSize: "1.5rem" }}>
-                      {" "}
-                      {`${`${emojis[key]} `.repeat(value)}`}
-                    </span>
-                    <br />
-                  </div>
-                );
-              }
-            )}
-          </Grid>
+              )!.complete
+            }
+          >
+            Pay Robber
+          </Button>
+          You must pay{" "}
+          {
+            gameState.robber.robberDebt!.find(
+              (player) => player.playerName === gameState.player.name
+            )!.cardsRequired
+          }{" "}
+          resource cards.
+          {gameState.robber.robberDebt.map((robber) => {
+            return robber.complete === false
+              ? `waiting on ${robber.playerName}`
+              : null;
+          })}
         </Grid>
       </Container>
     </>
