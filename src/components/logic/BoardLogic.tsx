@@ -8,9 +8,7 @@ import {
   RoadPiece,
   DevCardTypes,
 } from "../../../shared_types/types";
-import {
-  Modal,
-} from "@material-ui/core";
+import { Modal } from "@material-ui/core";
 import GameChat from "../GameChat";
 import Tiles from "../containers/Tiles";
 import ActionPrompt from "../display/ActionPrompt";
@@ -20,8 +18,6 @@ import MonopolyCardOptions from "../display/MonopolyCardOptions";
 import YearOfPlentyCardOptions from "../display/YearOfPlentyCardOptions";
 import RobberOptions from "../display/RobberOptions";
 //import { RoadInterface } from "../types";
-
-
 
 interface BoardLogicProps {
   gameState: PublicGameState;
@@ -39,8 +35,6 @@ export default function BoardLogic({
     yearOfPlenty: false,
   });
 
-
-
   const emojis: {
     [key: string]: string;
     wheat: string;
@@ -48,10 +42,8 @@ export default function BoardLogic({
     forest: string;
     stone: string;
     brick: string;
-  } = {brick: "🧱", forest: "🌲", stone: "⛰️", wheat: "🌾", sheep: "🐏" }
+  } = { brick: "🧱", forest: "🌲", stone: "⛰️", wheat: "🌾", sheep: "🐏" };
 
-
-  
   const [boardUpdate, setBoardUpdate] = useState(false);
   const itemTypes: ItemTypes[] = ["road", "town", "city", "devCard"];
 
@@ -70,8 +62,6 @@ export default function BoardLogic({
     return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [boardUpdate]);
-
-
 
   const isDevCardDisabled = (devCardKey: DevCardTypes): boolean => {
     let disable = false;
@@ -97,15 +87,15 @@ export default function BoardLogic({
       disable = true;
     }
 
-    Object.keys(gameState.devCards).forEach(devCardKey => {
+    Object.keys(gameState.devCards).forEach((devCardKey) => {
       if (
-        gameState.player.inventory.devCards[(devCardKey as DevCardTypes)].some(
+        gameState.player.inventory.devCards[devCardKey as DevCardTypes].some(
           (eachCard) => eachCard.roundPlayed === gameState.round
         )
       ) {
         disable = true;
-      }})
-
+      }
+    });
 
     return disable;
   };
@@ -532,14 +522,23 @@ export default function BoardLogic({
               ))
             : null}
         </div>
-        <div style={{ marginLeft: "60vw", marginTop: "4vh"}}>
-          Resources:{" "}<br/>
+        <div style={{ marginLeft: "60vw", marginTop: "4vh" }}>
+          Resources: <br />
           {/* {Object.entries(gameState.player.inventory.resources).map(
             ([key, value]) => `${key}: ${value}, `
           )} */}
           {Object.entries(gameState.player.inventory.resources).map(
             ([key, value]) => {
-              return (<div >{`${key}: `} <div style={{  fontSize: "1.5rem" }}> {`${`${emojis[key]} `.repeat(value)}`}</div><br/></div>)
+              return (
+                <div>
+                  {`${key}: `}{" "}
+                  <span style={{ fontSize: "1.5rem" }}>
+                    {" "}
+                    {`${`${emojis[key]} `.repeat(value)}`}
+                  </span>
+                  <br />
+                </div>
+              );
             }
           )}
           {/* {JSON.stringify(gameState.player.inventory.resources)} */}
@@ -591,7 +590,7 @@ export default function BoardLogic({
           <br />
           City cost: ⛰️ ⛰️ ⛰️ 🌾 🌾
           <br />
-          Dev card costs:  💎 🐏 🌾
+          Dev card costs: 💎 🐏 🌾
         </div>
       </div>
 
