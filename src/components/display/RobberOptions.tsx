@@ -77,7 +77,7 @@ export default function RobberOptions({ gameState }: RobberOptionsProps) {
   return (
     <>
       <Container maxWidth="md">
-        <Grid container component={Paper} className={classes.chatSection}>
+        <Grid container component={Paper} className={classes.chatSection} direction="row">
           <Grid item xs={2} className={classes.borderRight500}>
             <TextField
               id="wheat"
@@ -180,7 +180,8 @@ export default function RobberOptions({ gameState }: RobberOptionsProps) {
                 }))
               }
             />
-            <Grid item xs={10} className={classes.borderRight500}>
+            </Grid>
+            <Grid item sm={10} className={classes.borderRight500}>
               {Object.entries(gameState.player.inventory.resources).map(
                 ([key, value]) => {
                   return (
@@ -196,6 +197,7 @@ export default function RobberOptions({ gameState }: RobberOptionsProps) {
                 }
               )}
             </Grid>
+          
           </Grid>
           <Button
             color="primary"
@@ -217,19 +219,20 @@ export default function RobberOptions({ gameState }: RobberOptionsProps) {
           >
             Pay Robber
           </Button>
+          <br/>
           You must pay{" "}
           {
             gameState.robber.robberDebt!.find(
               (player) => player.playerName === gameState.player.name
             )!.cardsRequired
           }{" "}
-          resource cards.
+          resource cards. <br/>
           {gameState.robber.robberDebt.map((robber) => {
             return robber.complete === false
               ? `waiting on ${robber.playerName}`
               : null;
           })}
-        </Grid>
+        
       </Container>
     </>
   );
