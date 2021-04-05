@@ -546,9 +546,9 @@ export default function BoardLogic({
           Played devCards:{" "}<br/>
           {Object.entries(gameState.player.inventory.devCards).map(
             ([key, value]) => {
-              return (<div>`${key}: ${
+              return (<div>{`${key}: ${
                 value.filter((eachValue) => eachValue.roundPlayed > 0).length
-              }, `<br/></div>)
+              }, `}<br/></div>)
             }
           )}
           </Grid>
@@ -578,21 +578,18 @@ export default function BoardLogic({
             : null}
           {/* The largest army is: {JSON.stringify(gameState.largestArmy)} */}
           <br />
-          {`Your points are: ${gameState.player.points}`}
-          <br />
-          <br />
-          {`You have ${gameState.player.inventory.devCards.victory.length} victory points.`}
+          {`Your points are: ${gameState.player.points}`}{".  "}{`You have ${gameState.player.inventory.devCards.victory.length} victory points.`}
           <br />
           <br />
           {`There are ${gameState.resourceCards} resource cards left and ${gameState.devCards} devCards left.`}
           <br />
-          Road cost: 🧱 🌲
+          Road cost: <span style={{ fontSize: "1.5rem" }}>🧱 🌲</span>
           <br />
-          Town cost: 🧱 🌲 🐏 🌾
+          Town cost: <span style={{ fontSize: "1.5rem" }}>🧱 🌲 🐏 🌾</span>
           <br />
-          City cost: ⛰️ ⛰️ ⛰️ 🌾 🌾
+          City cost: <span style={{ fontSize: "1.5rem" }}>⛰️ ⛰️ ⛰️ 🌾 🌾</span>
           <br />
-          Dev card costs: 💎 🐏 🌾
+          Dev card costs: <span style={{ fontSize: "1.5rem" }}>💎 🐏 🌾</span>
         </div>
       </div>
 
