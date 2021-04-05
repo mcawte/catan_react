@@ -55,7 +55,7 @@ export const Ship = (props: any) => {
         {props.ship.type === "wheat" ? <GiWheat /> : null}
         {props.ship.type === "brick" ? <GiBrickPile /> : null}
         {props.ship.type === "stone" ? <GiStoneBlock /> : null}
-        {props.ship.type === "wood" ? <GiWoodPile /> : null}
+        {props.ship.type === "forest" ? <GiWoodPile /> : null}
       </StyledShip>
       <StyledShipRoute
         width={props.width}
