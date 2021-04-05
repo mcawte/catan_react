@@ -63,6 +63,11 @@ export default function BoardLogic({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [boardUpdate]);
 
+  const canBuyItem = (itemKey: ItemTypes): boolean =>  {
+
+    return false
+  }
+
   const isDevCardDisabled = (devCardKey: DevCardTypes): boolean => {
     let disable = false;
     if (gameState.playerTurn.stage < 4) {
@@ -363,9 +368,7 @@ export default function BoardLogic({
             dice1={gameState?.diceRoll.dice1}
             dice2={gameState?.diceRoll.dice2}
           />
-        </div>
-
-        <div style={{ marginLeft: "60vw", marginTop: "10vh" }}>
+        <br/>
           <button
             onClick={() =>
               socket.emit(

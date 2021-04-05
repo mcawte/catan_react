@@ -220,20 +220,8 @@ export default function RobberOptions({ gameState }: RobberOptionsProps) {
             }{" "}
             resource cards.
           </Grid>
-          <Grid item xs={2} className={classes.borderRight500}>
-            {/* {`You have ${gameState.player.inventory.resources["forest"]} 🌲`}
-            <br/>
-              {`You have ${gameState.player.inventory.resources["brick"]} 🧱`}
-              <br/>
-              {`You have ${gameState.player.inventory.resources["sheep"]} 🐏`}
-              <br/>
-              {`You have ${gameState.player.inventory.resources["stone"]} ⛰️`}
-              <br/>
-              {`You have ${gameState.player.inventory.resources["wheat"]} 🌾`} */}
-            Resources: <br />
-            {/* {Object.entries(gameState.player.inventory.resources).map(
-            ([key, value]) => `${key}: ${value}, `
-          )} */}
+          <Grid item xs={10} className={classes.borderRight500}>
+            
             {Object.entries(gameState.player.inventory.resources).map(
               ([key, value]) => {
                 return (
