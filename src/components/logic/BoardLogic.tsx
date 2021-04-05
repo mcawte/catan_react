@@ -523,9 +523,10 @@ export default function BoardLogic({
             : null}
         </div>
         <div style={{ marginLeft: "60vw", marginTop: "4vh" }}>
-          <Grid container justify="center" spacing={2} direction="row">
-          Resources: <br />
+          <Grid container justify="flex-start" spacing={2} direction="row">
           <Grid item>
+          Resources: <br />
+          
           {Object.entries(gameState.player.inventory.resources).map(
             ([key, value]) => {
               return (
@@ -542,12 +543,12 @@ export default function BoardLogic({
           )}
           </Grid>
           <Grid item> 
-          Played devCards:{" "}
+          Played devCards:{" "}<br/>
           {Object.entries(gameState.player.inventory.devCards).map(
             ([key, value]) => {
-              return `${key}: ${
+              return (<div>`${key}: ${
                 value.filter((eachValue) => eachValue.roundPlayed > 0).length
-              }, `;
+              }, `<br/></div>)
             }
           )}
           </Grid>
