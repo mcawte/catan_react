@@ -197,7 +197,7 @@ export default function BoardLogic({
             playerName: null,
             roundPlaced: 0,
           };
-
+          roadCount = prevState.player.inventory.roads + 1;
           // return newState;
         }
       }
