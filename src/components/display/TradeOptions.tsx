@@ -87,8 +87,7 @@ export default function TradeOptions({
           </Grid>
           <Grid container>
             {gameState.player.shipRoutes.map((resourceKey, index) => {
-              return resourceKey === "2to1" &&
-                gameState.player.inventory.resources[resourceKey] > 1 ? (
+              return gameState.player.inventory.resources[resourceKey] >= 2 ? (
                 <Grid
                   item
                   xs={2}
@@ -120,7 +119,7 @@ export default function TradeOptions({
           <Grid container>
             {Object.entries(gameState.player.inventory.resources).map(
               ([resourceKey, value], index) => {
-                return value > 3 && tradeRate === "4to1" ? (
+                return value >= 4 && tradeRate === "4to1" ? (
                   <Grid
                     item
                     xs={2}
@@ -161,7 +160,7 @@ export default function TradeOptions({
             )}
             {Object.entries(gameState.player.inventory.resources).map(
               ([resourceKey, value], index) => {
-                return value > 2 && tradeRate === "3to1" ? (
+                return value >= 3 && tradeRate === "3to1" ? (
                   <Grid
                     item
                     xs={2}
