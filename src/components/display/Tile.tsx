@@ -2,6 +2,8 @@ import React from "react";
 import { GiRobber } from "react-icons/gi";
 import styled from "styled-components";
 
+
+
 interface TileProps {
   tileType: string;
   tileNumber: number | null;
@@ -87,7 +89,9 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
             >
               {props.robber ? (
                 <Robber tileWidth={tileWidth}>
+                  <span style={{fontSize: "1.5rem"}}>
                   <GiRobber />
+                  </span>
                 </Robber>
               ) : (
                 <h1>{props.tileNumber}</h1>
