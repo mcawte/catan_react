@@ -89,46 +89,26 @@ export default function RobberOptions({ gameState }: RobberOptionsProps) {
             ))}
           </Grid>
           <Grid item xs={2} className={classes.borderRight500}>
-            <TextField
-              id="forest"
-              name="forest"
-              label="forest"
+          <TextField
+              id="wheat"
+              name="wheat"
+              label="wheat"
               type="number"
               InputProps={{
                 inputProps: {
-                  max: gameState.player.inventory.resources.forest,
+                  max: gameState.player.inventory.resources.wheat,
                   min: 0,
                 },
               }}
               fullWidth
-              value={robberPayment.forest}
+              value={robberPayment.wheat}
               onChange={(e) =>
                 setRobberPayment((prevState) => ({
                   ...prevState,
-                  forest: parseInt(e.target.value),
+                  wheat: parseInt(e.target.value),
                 }))
               }
-            ></TextField>
-            <TextField
-              id="brick"
-              name="brick"
-              label="brick"
-              type="number"
-              InputProps={{
-                inputProps: {
-                  max: gameState.player.inventory.resources.brick,
-                  min: 0,
-                },
-              }}
-              fullWidth
-              value={robberPayment.brick}
-              onChange={(e) =>
-                setRobberPayment((prevState) => ({
-                  ...prevState,
-                  brick: parseInt(e.target.value),
-                }))
-              }
-            ></TextField>
+            />
             <TextField
               id="sheep"
               name="sheep"
@@ -148,7 +128,29 @@ export default function RobberOptions({ gameState }: RobberOptionsProps) {
                   sheep: parseInt(e.target.value),
                 }))
               }
-            ></TextField>
+            />
+            <TextField
+              id="forest"
+              name="forest"
+              label="forest"
+              type="number"
+              InputProps={{
+                inputProps: {
+                  max: gameState.player.inventory.resources.forest,
+                  min: 0,
+                },
+              }}
+              fullWidth
+              value={robberPayment.forest}
+              onChange={(e) =>
+                setRobberPayment((prevState) => ({
+                  ...prevState,
+                  forest: parseInt(e.target.value),
+                }))
+              }
+            />
+            
+            
             <TextField
               id="stone"
               name="stone"
@@ -168,27 +170,28 @@ export default function RobberOptions({ gameState }: RobberOptionsProps) {
                   stone: parseInt(e.target.value),
                 }))
               }
-            ></TextField>
+            />
             <TextField
-              id="wheat"
-              name="wheat"
-              label="wheat"
+              id="brick"
+              name="brick"
+              label="brick"
               type="number"
               InputProps={{
                 inputProps: {
-                  max: gameState.player.inventory.resources.wheat,
+                  max: gameState.player.inventory.resources.brick,
                   min: 0,
                 },
               }}
               fullWidth
-              value={robberPayment.wheat}
+              value={robberPayment.brick}
               onChange={(e) =>
                 setRobberPayment((prevState) => ({
                   ...prevState,
-                  wheat: parseInt(e.target.value),
+                  brick: parseInt(e.target.value),
                 }))
               }
-            ></TextField>
+            />
+            
             <Button
               color="primary"
               variant="contained"

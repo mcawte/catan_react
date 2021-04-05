@@ -552,9 +552,19 @@ export default function BoardLogic({
             }
           )}
           </Grid>
+          <Grid item>
+          DevCards in hand:{" "}<br/>
+          {Object.entries(gameState.player.inventory.devCards).map(
+            ([key, value]) => {
+              return (<div>{`${key}: ${
+                value.filter((eachValue) => eachValue.roundPlayed === 0).length
+              }, `}<br/></div>);
+            }
+          )}
+          </Grid>
           </Grid>
           {/* {JSON.stringify(gameState.player.inventory.devCards)} */}
-          <br />
+          {/* <br />
           DevCards in hand:{" "}
           {Object.entries(gameState.player.inventory.devCards).map(
             ([key, value]) => {
@@ -562,7 +572,7 @@ export default function BoardLogic({
                 value.filter((eachValue) => eachValue.roundPlayed === 0).length
               }, `;
             }
-          )}
+          )} */}
           <br />
           {/* Your roads, towns, and cities are:{" "} */}
           Roads: {JSON.stringify(gameState.player.inventory.roads)}, Towns:{" "}
@@ -578,7 +588,7 @@ export default function BoardLogic({
             : null}
           {/* The largest army is: {JSON.stringify(gameState.largestArmy)} */}
           <br />
-          {`Your points are: ${gameState.player.points}`}{".  "}{`You have ${gameState.player.inventory.devCards.victory.length} victory points.`}
+          {`You have ${gameState.player.points} total points with ${gameState.player.inventory.devCards.victory.length} victory points.`}
           <br />
           <br />
           {`There are ${gameState.resourceCards} resource cards left and ${gameState.devCards} devCards left.`}
