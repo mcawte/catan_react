@@ -2,8 +2,6 @@ import React from "react";
 import { GiRobber } from "react-icons/gi";
 import styled from "styled-components";
 
-
-
 interface TileProps {
   tileType: string;
   tileNumber: number | null;
@@ -17,7 +15,7 @@ interface TileProps {
     row: number;
     column: number;
     tileNumber: number | null;
-}) => void
+  }) => void;
 }
 
 function dotRepeats(roll: number | null) {
@@ -60,7 +58,6 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
 
   return (
     <>
-    
       <div //hex container
         style={{
           position: "absolute",
@@ -68,64 +65,68 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
           left: `${leftShift}px`,
         }}
       >
-        <TileContainer tileWidth={tileWidth} onClick={() => props.updateRobber({ row: props.row, column: props.column, tileNumber: props.tileNumber})}>
-        <div
-          className="tile"
-          style={{
-            width: `${tileWidth}px`,
-            height: `${tileHeight}px`,
-            backgroundImage: `url('/${props.tileType}.jpeg')`,
-          }}
+        <TileContainer
+          tileWidth={tileWidth}
+          onClick={() =>
+            props.updateRobber({
+              row: props.row,
+              column: props.column,
+              tileNumber: props.tileNumber,
+            })
+          }
         >
-          <div>
-            <div
-              className="tileNumber"
-              style={{
-                fontSize: `${tileWidth / 110}em`,
-                textShadow: `-${textShadowSize}px -${textShadowSize}px 0 #000, ${textShadowSize}px -${textShadowSize}px 0 #000, -${textShadowSize}px ${textShadowSize}px 0 #000, ${
-                  1.25 * textShadowSize
-                }px ${1.25 * textShadowSize}px 0 #000`,
-              }}
-            >
-              {props.robber ? (
-                <Robber tileWidth={tileWidth}>
-                  <span style={{fontSize: "1.5rem"}}>
-                  <GiRobber />
-                  </span>
-                </Robber>
-              ) : (
-                <h1>{props.tileNumber}</h1>
-              )}
-
-              {/* <h1>{props.tileNumber}</h1> */}
+          <div
+            className="tile"
+            style={{
+              width: `${tileWidth}px`,
+              height: `${tileHeight}px`,
+              backgroundImage: `url('/${props.tileType}.jpeg')`,
+            }}
+          >
+            <div>
               <div
-                className="tileDots"
+                className="tileNumber"
                 style={{
-                  color: `${
-                    dotRepeats(props.tileNumber) === 5 ? "green" : "blue"
-                  }`,
+                  fontSize: `${tileWidth / 110}em`,
+                  textShadow: `-${textShadowSize}px -${textShadowSize}px 0 #000, ${textShadowSize}px -${textShadowSize}px 0 #000, -${textShadowSize}px ${textShadowSize}px 0 #000, ${
+                    1.25 * textShadowSize
+                  }px ${1.25 * textShadowSize}px 0 #000`,
                 }}
               >
-                <h1
+                {props.robber ? (
+                  <Robber tileWidth={tileWidth}>
+                    <GiRobber size={1.5} />
+                  </Robber>
+                ) : (
+                  <h1>{props.tileNumber}</h1>
+                )}
+
+                {/* <h1>{props.tileNumber}</h1> */}
+                <div
+                  className="tileDots"
                   style={{
-                    top: `${(-1 / 5) * tileWidth}px`,
+                    color: `${
+                      dotRepeats(props.tileNumber) === 5 ? "green" : "blue"
+                    }`,
                   }}
                 >
-                  {".".repeat(dotRepeats(props.tileNumber))}
-                </h1>
+                  <h1
+                    style={{
+                      top: `${(-1 / 5) * tileWidth}px`,
+                    }}
+                  >
+                    {".".repeat(dotRepeats(props.tileNumber))}
+                  </h1>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </TileContainer>
         {props.children}
       </div>
-      
     </>
   );
 }
-
-
 
 interface RobberProps {
   tileWidth: number;
@@ -143,7 +144,6 @@ interface TileContainerProps {
   tileWidth: number;
 }
 
-
 export const TileContainer = styled.h1<TileContainerProps>`
-font-size: ${(props) => props.tileWidth / 8}px;
+  font-size: ${(props) => props.tileWidth / 8}px;
 `;
