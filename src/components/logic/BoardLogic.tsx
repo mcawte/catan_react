@@ -412,7 +412,7 @@ export default function BoardLogic({
             marginTop: "8vh",
           }}
         >
-          <div>
+          
           <Dice
             dice1={gameState?.diceRoll.dice1}
             dice2={gameState?.diceRoll.dice2}
@@ -657,7 +657,7 @@ export default function BoardLogic({
           <br />
           Dev card costs: <span style={{ fontSize: "1.5rem" }}>💎 🐏 🌾</span>
         </div>
-      </div>
+      
 
       <Modal
         open={tradeModal.open}
