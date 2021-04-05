@@ -8,7 +8,7 @@ import {
   RoadPiece,
   DevCardTypes,
 } from "../../../shared_types/types";
-import { Modal } from "@material-ui/core";
+import { Grid, Modal } from "@material-ui/core";
 import GameChat from "../GameChat";
 import Tiles from "../containers/Tiles";
 import ActionPrompt from "../display/ActionPrompt";
@@ -523,10 +523,9 @@ export default function BoardLogic({
             : null}
         </div>
         <div style={{ marginLeft: "60vw", marginTop: "4vh" }}>
+          <Grid container justify="center" spacing={2} direction="row">
           Resources: <br />
-          {/* {Object.entries(gameState.player.inventory.resources).map(
-            ([key, value]) => `${key}: ${value}, `
-          )} */}
+          <Grid item>
           {Object.entries(gameState.player.inventory.resources).map(
             ([key, value]) => {
               return (
@@ -541,8 +540,8 @@ export default function BoardLogic({
               );
             }
           )}
-          {/* {JSON.stringify(gameState.player.inventory.resources)} */}
-          <br />
+          </Grid>
+          <Grid item> 
           Played devCards:{" "}
           {Object.entries(gameState.player.inventory.devCards).map(
             ([key, value]) => {
@@ -551,6 +550,8 @@ export default function BoardLogic({
               }, `;
             }
           )}
+          </Grid>
+          </Grid>
           {/* {JSON.stringify(gameState.player.inventory.devCards)} */}
           <br />
           DevCards in hand:{" "}
