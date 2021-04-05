@@ -239,31 +239,9 @@ export default function GameChat(
                 {currentPlayers.map((player) => avatarBlock(player))}
               </List>
             </Grid>
-            <div>Propose </div>
+            
             <Grid item xs={2}>
-              {/* {
-                ["forest","wheat","sheep","stone","brick"].map(
-                  (resource) => {
-                    return (
-                      <TextField
-                        id={`${resource}`}
-                        name={`${resource}`}
-                        label={`${resource}`}
-                        type="number"
-                        InputProps={{
-                          inputProps: {
-                            max: `props.gameState.player.inventory.resources.${resource}`,
-                            min: 0,
-                          },
-                        }}
-                        fullWidth
-                        value={props.gameState.currentTrade.offers[resource]}
-                        onChange={(e) => setPropose(e, "offers")}
-                      />
-                    );
-                  }
-                )
-              } */}
+              Propose
               <TextField
                 id="forest"
                 name="forest"
@@ -340,8 +318,9 @@ export default function GameChat(
                 onChange={(e) => setPropose(e, "offers")}
               />
             </Grid>
-            <div>FOR</div>
+            
             <Grid item xs={2}>
+              For
               <TextField
                 id="forest"
                 name="forest"

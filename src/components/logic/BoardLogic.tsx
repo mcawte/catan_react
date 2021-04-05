@@ -63,10 +63,56 @@ export default function BoardLogic({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [boardUpdate]);
 
-  const canBuyItem = (itemKey: ItemTypes): boolean =>  {
+  const canBuyItem = (itemKey: ItemTypes): boolean => {
+    let canBuy = false;
 
-    return false
-  }
+    let playerResources = gameState.player.inventory.resources;
+    switch (itemKey) {
+      case "road":
+        if (playerResources.brick < 1 || playerResources.forest < 1) {
+          canBuy = false;
+        }
+        break;
+      case "town":
+        if (
+          playerResources.brick < 1 ||
+          playerResources.forest < 1 ||
+          playerResources.wheat < 1 ||
+          playerResources.sheep < 1
+        ) {
+          canBuy = false;
+        }
+        break;
+      case "city":
+        if (
+          playerResources.stone < 3 ||
+          playerResources.wheat < 2
+        ) {
+          canBuy = false;
+        }
+        break;
+      case "devCard":
+        if (
+          playerResources.stone < 1 ||
+          playerResources.wheat < 1 ||
+          playerResources.sheep < 1
+        ) {
+          canBuy = false;
+        }
+        break;
+      default:
+        console.log("Unknown item");
+    }
+    if (
+      gameState.player.name !== gameState.playerTurn.player.name ||
+      gameState.playerTurn.stage < 3 ||
+      gameState.round < 2
+    ) {
+      canBuy = false;
+    }
+
+    return canBuy;
+  };
 
   const isDevCardDisabled = (devCardKey: DevCardTypes): boolean => {
     let disable = false;
@@ -368,7 +414,7 @@ export default function BoardLogic({
             dice1={gameState?.diceRoll.dice1}
             dice2={gameState?.diceRoll.dice2}
           />
-        <br/>
+          <br />
           <button
             onClick={() =>
               socket.emit(
@@ -439,13 +485,7 @@ export default function BoardLogic({
                   itemToBuy
                 )
               }
-              disabled={
-                !(
-                  gameState.player.name === gameState.playerTurn.player.name &&
-                  gameState.playerTurn.stage > 3 &&
-                  gameState.round > 1
-                )
-              }
+              disabled={!canBuyItem(itemToBuy)}
             >
               {`Buy ${itemToBuy}`}
             </button>
