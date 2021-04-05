@@ -246,7 +246,7 @@ import {
           )} */}
           {Object.entries(gameState.player.inventory.resources).map(
             ([key, value]) => {
-              return (<div >{`${key}: `} <div style={{  fontSize: "1.5rem" }}>` {`${`${emojis[key]} `.repeat(value)}`}</div><br/></div>)
+              return (<div >{`${key}: `} <div style={{  fontSize: "1.5rem" }}> {`${`${emojis[key]} `.repeat(value)}`}</div><br/></div>)
             }
           )}
             </Grid>
