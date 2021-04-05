@@ -82,8 +82,8 @@ export default function RobberOptions({ gameState }: RobberOptionsProps) {
   return (
     <>
       <Container maxWidth="md">
-          <Grid container>
-        <Grid container component={Paper} className={classes.chatSection} direction="row">
+          <Grid container component={Paper} >
+        <Grid container className={classes.chatSection} direction="row">
           <Grid item xs={2} className={classes.resourcePay}>
             <TextField
               id="wheat"
