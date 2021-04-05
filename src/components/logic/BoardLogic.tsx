@@ -405,7 +405,7 @@ export default function BoardLogic({
         }
       />
 
-      <div>
+      
         <div
           style={{
             marginLeft: "55vw",
@@ -477,7 +477,7 @@ export default function BoardLogic({
             End Turn
           </button>
         </div>
-        </div>
+        
 
         <div style={{ marginLeft: "55vw", marginTop: "1vh" }}>
           {itemTypes.map((itemToBuy) => (
