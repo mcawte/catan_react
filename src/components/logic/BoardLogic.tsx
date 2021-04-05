@@ -418,7 +418,7 @@ export default function BoardLogic({
             dice2={gameState?.diceRoll.dice2}
           />
           </div>
-          <div style={{ marginLeft: "55vw", marginTop: "1vh" }}>
+          <div style={{ marginLeft: "55vw", marginTop: "4vh" }}>
           <button
             onClick={() =>
               socket.emit(
