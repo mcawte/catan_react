@@ -25,6 +25,10 @@ const useStyles = makeStyles({
   borderRight500: {
     borderRight: "1px solid #e0e0e0",
   },
+  resourcePay: {
+    borderRight: "1px solid #e0e0e0",
+    height: "80vh"
+  },
   messageArea: {
     height: "100%",
     overflowY: "auto",
@@ -78,7 +82,7 @@ export default function RobberOptions({ gameState }: RobberOptionsProps) {
     <>
       <Container maxWidth="md">
         <Grid container component={Paper} className={classes.chatSection} direction="row">
-          <Grid item xs={2} className={classes.borderRight500}>
+          <Grid item xs={2} className={classes.resourcePay}>
             <TextField
               id="wheat"
               name="wheat"
@@ -181,7 +185,7 @@ export default function RobberOptions({ gameState }: RobberOptionsProps) {
               }
             />
             </Grid>
-            <Grid item sm={10} className={classes.borderRight500}>
+            <Grid item sm={10} className={classes.resourcePay}>
               {Object.entries(gameState.player.inventory.resources).map(
                 ([key, value]) => {
                   return (
