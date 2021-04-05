@@ -87,7 +87,7 @@ export default function TradeOptions({
           </Grid>
           <Grid container>
             {gameState.player.shipRoutes.map((resourceKey, index) => {
-              return resourceKey !== "3to1" &&
+              return resourceKey === "2to1" &&
                 gameState.player.inventory.resources[resourceKey] > 1 ? (
                 <Grid
                   item
