@@ -353,12 +353,19 @@ export default function BoardLogic({
       />
 
       <div>
-        <Dice
-          dice1={gameState?.diceRoll.dice1}
-          dice2={gameState?.diceRoll.dice2}
-        />
+        <div
+          style={{
+            marginLeft: "60vw",
+            marginTop: "8vh",
+          }}
+        >
+          <Dice
+            dice1={gameState?.diceRoll.dice1}
+            dice2={gameState?.diceRoll.dice2}
+          />
+        </div>
 
-        <div style={{ marginLeft: "60vw", marginTop: "15vh" }}>
+        <div style={{ marginLeft: "60vw", marginTop: "10vh" }}>
           <button
             onClick={() =>
               socket.emit(
@@ -524,55 +531,56 @@ export default function BoardLogic({
         </div>
         <div style={{ marginLeft: "60vw", marginTop: "4vh" }}>
           <Grid container justify="flex-start" spacing={2} direction="row">
-          <Grid item>
-          Resources: <br />
-          
-          {Object.entries(gameState.player.inventory.resources).map(
-            ([key, value]) => {
-              return (
-                <div>
-                  {`${key}: `}{" "}
-                  <span style={{ fontSize: "1.5rem" }}>
-                    {" "}
-                    {`${`${emojis[key]} `.repeat(value)}`}
-                  </span>
-                  <br />
-                </div>
-              );
-            }
-          )}
+            <Grid item>
+              Resources: <br />
+              {Object.entries(gameState.player.inventory.resources).map(
+                ([key, value]) => {
+                  return (
+                    <div>
+                      {`${key}: `}{" "}
+                      <span style={{ fontSize: "1.5rem" }}>
+                        {" "}
+                        {`${`${emojis[key]} `.repeat(value)}`}
+                      </span>
+                      <br />
+                    </div>
+                  );
+                }
+              )}
+            </Grid>
+            <Grid item>
+              DevCards in hand: <br />
+              {Object.entries(gameState.player.inventory.devCards).map(
+                ([key, value]) => {
+                  return (
+                    <div>
+                      {`${key}: ${
+                        value.filter((eachValue) => eachValue.roundPlayed === 0)
+                          .length
+                      } `}
+                      <br />
+                    </div>
+                  );
+                }
+              )}
+            </Grid>
+            <Grid item>
+              Played devCards: <br />
+              {Object.entries(gameState.player.inventory.devCards).map(
+                ([key, value]) => {
+                  return (
+                    <div>
+                      {`${key}: ${
+                        value.filter((eachValue) => eachValue.roundPlayed > 0)
+                          .length
+                      } `}
+                      <br />
+                    </div>
+                  );
+                }
+              )}
+            </Grid>
           </Grid>
-          <Grid item> 
-          Played devCards:{" "}<br/>
-          {Object.entries(gameState.player.inventory.devCards).map(
-            ([key, value]) => {
-              return (<div>{`${key}: ${
-                value.filter((eachValue) => eachValue.roundPlayed > 0).length
-              }, `}<br/></div>)
-            }
-          )}
-          </Grid>
-          <Grid item>
-          DevCards in hand:{" "}<br/>
-          {Object.entries(gameState.player.inventory.devCards).map(
-            ([key, value]) => {
-              return (<div>{`${key}: ${
-                value.filter((eachValue) => eachValue.roundPlayed === 0).length
-              }, `}<br/></div>);
-            }
-          )}
-          </Grid>
-          </Grid>
-          {/* {JSON.stringify(gameState.player.inventory.devCards)} */}
-          {/* <br />
-          DevCards in hand:{" "}
-          {Object.entries(gameState.player.inventory.devCards).map(
-            ([key, value]) => {
-              return `${key}: ${
-                value.filter((eachValue) => eachValue.roundPlayed === 0).length
-              }, `;
-            }
-          )} */}
           <br />
           {/* Your roads, towns, and cities are:{" "} */}
           Roads: {JSON.stringify(gameState.player.inventory.roads)}, Towns:{" "}
