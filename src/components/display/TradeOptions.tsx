@@ -108,7 +108,7 @@ export default function TradeOptions({
                       );
                       setModals((prevState) => ({ ...prevState, trade: false }));
                     }}
-                    disabled={resourceKey === trade.receive ? true : false}
+                    disabled={ (resourceKey === trade.receive) }
                   >
                     {`Give up 2 ${resourceKey}`}
                   </Button>
@@ -144,12 +144,8 @@ export default function TradeOptions({
                         }));
                       }}
                       disabled={
-                        resourceKey === trade.receive ||
-                        gameState.player.shipRoutes.includes(
-                          resourceKey as TradeType
-                        )
-                          ? true
-                          : false
+                        (resourceKey === trade.receive) ||
+                        gameState.player.shipRoutes.includes(resourceKey as TradeType )
                       }
                     >
                       {`Give up 4 ${resourceKey}`}
