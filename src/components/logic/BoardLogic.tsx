@@ -64,7 +64,7 @@ export default function BoardLogic({
   }, [boardUpdate]);
 
   const canBuyItem = (itemKey: ItemTypes): boolean => {
-    let canBuy = false;
+    let canBuy = true;
 
     let playerResources = gameState.player.inventory.resources;
     switch (itemKey) {
@@ -410,11 +410,13 @@ export default function BoardLogic({
             marginTop: "8vh",
           }}
         >
+          <div>
           <Dice
             dice1={gameState?.diceRoll.dice1}
             dice2={gameState?.diceRoll.dice2}
           />
-          <br />
+          </div>
+          <div>
           <button
             onClick={() =>
               socket.emit(
