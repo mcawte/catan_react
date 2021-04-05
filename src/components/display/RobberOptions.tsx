@@ -27,6 +27,7 @@ const useStyles = makeStyles({
   },
   resourcePay: {
     borderRight: "1px solid #e0e0e0",
+    overflowY: "auto",
     height: "80vh"
   },
   messageArea: {
@@ -81,6 +82,7 @@ export default function RobberOptions({ gameState }: RobberOptionsProps) {
   return (
     <>
       <Container maxWidth="md">
+          <Grid container>
         <Grid container component={Paper} className={classes.chatSection} direction="row">
           <Grid item xs={2} className={classes.resourcePay}>
             <TextField
@@ -236,7 +238,7 @@ export default function RobberOptions({ gameState }: RobberOptionsProps) {
               ? `waiting on ${robber.playerName}`
               : null;
           })}
-        
+        </Grid>
       </Container>
     </>
   );
