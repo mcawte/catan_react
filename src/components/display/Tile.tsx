@@ -91,7 +91,8 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
                   // textShadow: `-${textFontSize}px -${textFontSize}px 0 #000, ${textFontSize}px -${textFontSize}px 0 #000, -${textFontSize}px ${textFontSize}px 0 #000, ${
                   //   0.05 * textFontSize
                   // }px ${0.05 * textFontSize}px 0 #000`,
-                  textShadow: `${0.1 * textFontSize}px ${0.1 * textFontSize}px #000`,
+                  //textShadow: `${0.1 * textFontSize}px ${0.1 * textFontSize}px #000`,
+                  WebkitTextStroke: "10px black"
                 }}
               >
                 {props.robber ? (
