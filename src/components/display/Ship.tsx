@@ -84,7 +84,7 @@ const StyledShipRoute = styled.h1<ShipRouteProps>`
   border-style: dashed;
   /* width: ${5}px;
   height: ${50}px; */
-  width: ${(props) => props.tileWidth/8}px;
+  width: ${(props) => props.tileWidth/10}px;
   height: ${(props) => props.tileWidth/2.25}px;
   opacity: 75%;
   top: 50%;
