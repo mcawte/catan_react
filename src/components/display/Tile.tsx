@@ -54,7 +54,7 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
   const topShift =
     (props.tileSize / 2) * Math.sqrt(3) * props.row * props.gridSpace;
 
-  const textFontSize = tileWidth / 7;
+  const textFontSize = tileWidth / 5;
 
   return (
     <>
