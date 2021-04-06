@@ -54,7 +54,7 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
   const topShift =
     (props.tileSize / 2) * Math.sqrt(3) * props.row * props.gridSpace;
 
-  const textFontSize = tileWidth / 5;
+  const textFontSize = tileWidth / 6;
 
   return (
     <>
@@ -89,8 +89,9 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
                 style={{
                   fontSize: `${textFontSize}px`,
                   textShadow: `-${textFontSize}px -${textFontSize}px 0 #000, ${textFontSize}px -${textFontSize}px 0 #000, -${textFontSize}px ${textFontSize}px 0 #000, ${
-                    1.05 * textFontSize
-                  }px ${1.05 * textFontSize}px 0 #000`,
+                    0.05 * textFontSize
+                  }px ${0.05 * textFontSize}px 0 #000`,
+                  
                 }}
               >
                 {props.robber ? (
