@@ -54,7 +54,7 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
   const topShift =
     (props.tileSize / 2) * Math.sqrt(3) * props.row * props.gridSpace;
 
-  const textShadowSize = tileWidth / 110;
+  const textShadowSize = 1.2 //tileWidth / 110;
 
   return (
     <>
@@ -87,7 +87,7 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
               <div
                 className="tileNumber"
                 style={{
-                  fontSize: "1.5rem",
+                  fontSize: "1.2rem",
                   textShadow: `-${textShadowSize}px -${textShadowSize}px 0 #000, ${textShadowSize}px -${textShadowSize}px 0 #000, -${textShadowSize}px ${textShadowSize}px 0 #000, ${
                     1.25 * textShadowSize
                   }px ${1.25 * textShadowSize}px 0 #000`,
