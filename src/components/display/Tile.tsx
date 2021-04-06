@@ -88,10 +88,10 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
                 className="tileNumber"
                 style={{
                   fontSize: `${textFontSize}px`,
-                  textShadow: `-${textFontSize}px -${textFontSize}px 0 #000, ${textFontSize}px -${textFontSize}px 0 #000, -${textFontSize}px ${textFontSize}px 0 #000, ${
-                    0.05 * textFontSize
-                  }px ${0.05 * textFontSize}px 0 #000`,
-                  
+                  // textShadow: `-${textFontSize}px -${textFontSize}px 0 #000, ${textFontSize}px -${textFontSize}px 0 #000, -${textFontSize}px ${textFontSize}px 0 #000, ${
+                  //   0.05 * textFontSize
+                  // }px ${0.05 * textFontSize}px 0 #000`,
+                  textShadow: `${0.05 * textFontSize}px ${0.05 * textFontSize}px #000`,
                 }}
               >
                 {props.robber ? (
