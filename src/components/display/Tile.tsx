@@ -94,7 +94,7 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
                   //textShadow: `${0.1 * textFontSize}px ${0.1 * textFontSize}px #000`,
                   // WebkitTextStroke: "10px black",
                   WebkitTextFillColor: "white",
-                  WebkitTextStrokeWidth: "1px",
+                  WebkitTextStrokeWidth: `${0.05 * textFontSize}px`,
                   WebkitTextStrokeColor: "black"
                 }}
               >
@@ -112,6 +112,9 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
                   className="tileDots"
                   style={{
                     color: `${
+                      dotRepeats(props.tileNumber) === 5 ? "green" : "blue"
+                    }`,
+                    WebkitTextFillColor: `${
                       dotRepeats(props.tileNumber) === 5 ? "green" : "blue"
                     }`,
                   }}
