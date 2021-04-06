@@ -87,7 +87,7 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
               <div
                 className="tileNumber"
                 style={{
-                  fontSize: `${tileWidth / 110}em`,
+                  fontSize: "1.5rem",
                   textShadow: `-${textShadowSize}px -${textShadowSize}px 0 #000, ${textShadowSize}px -${textShadowSize}px 0 #000, -${textShadowSize}px ${textShadowSize}px 0 #000, ${
                     1.25 * textShadowSize
                   }px ${1.25 * textShadowSize}px 0 #000`,
@@ -96,7 +96,7 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
                 {props.robber ? (
                   <Robber tileWidth={tileWidth}>
                     {/* <GiRobber style={{fontSize: "1.5x", color: "black"}} > <GiRobber style={{position: "absolute",fontSize: "1.3x", color: "white"}} /></GiRobber> */}
-                    <GiRobber style={{fontSize: "1.5x", color: "black"}}/> 
+                    <GiRobber style={{ fontSize: "1.5x", color: "black" }} />
                   </Robber>
                 ) : (
                   <h1>{props.tileNumber}</h1>
