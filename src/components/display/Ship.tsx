@@ -58,15 +58,11 @@ export const Ship = (props: any) => {
         {props.ship.type === "forest" ? <GiWoodPile /> : null}
       </StyledShip>
       <StyledShipRoute
-        width={props.width}
-        height={props.height}
         rotation={props.ship.tradeSettlement1.rotation}
         playerColor={null}
         tileWidth={props.tileWidth}
       />
       <StyledShipRoute
-        width={props.width}
-        height={props.height}
         rotation={props.ship.tradeSettlement2.rotation}
         playerColor={null}
         tileWidth={props.tileWidth}
@@ -79,8 +75,6 @@ interface ShipRouteProps {
   rotation: string;
   playerColor: PlayerColor | null;
   tileWidth: number;
-  width: number;
-  height: number;
 }
 
 const StyledShipRoute = styled.h1<ShipRouteProps>`
@@ -90,8 +84,8 @@ const StyledShipRoute = styled.h1<ShipRouteProps>`
   border-style: dashed;
   /* width: ${5}px;
   height: ${50}px; */
-  width: ${(props) => props.width*6/7}px;
-  height: ${(props) => props.height*6/7}px;
+  width: ${(props) => props.tileWidth/10}px;
+  height: ${(props) => props.tileWidth/2}px;
   opacity: 75%;
   top: 50%;
   left: 50%;
