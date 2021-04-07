@@ -112,6 +112,7 @@ export default function Tiles({
                     left={roadLeft}
                     top={roadTop}
                     //onClick={() => updateRoad(tile, road)}
+                    onMouseEnter={() => socket.emit("updateRoad",gameName, playerName, tile.row, tile.column, road.direction)}
                     onClick={() => socket.emit("updateRoad",gameName, playerName, tile.row, tile.column, road.direction)}
                   />
                 );
