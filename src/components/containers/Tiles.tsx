@@ -2,7 +2,7 @@ import React from "react";
 import { Road } from "../display/Road";
 import { Ship } from "../display/Ship";
 import Tile from "../display/Tile";
-//import { useResize } from "../../hooks/useResize";
+import { useResize } from "../../hooks/useResize";
 
 import { Settlement } from "../display/Settlement";
 import {
@@ -55,9 +55,9 @@ export default function Tiles({
   updateSettlement,
   updateRobber,
 }: React.PropsWithChildren<NewBoardProps>) {
-  //const { width } = useResize();
-  const width = 800;
-  const tileSize = (0.5 * width) / boardWidth;
+  const { height } = useResize();
+  //const tileSize = (0.5 * width) / boardWidth;
+  const tileSize = (0.95 * height * Math.sqrt(3)/2) / boardWidth;
 
   //const itemTypes: ItemTypes[] = ["road", "town", "city", "devCard"];
 
