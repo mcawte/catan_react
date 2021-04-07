@@ -140,7 +140,8 @@ export default function BoardLogic({
       disable = true;
     }
 
-    Object.keys(gameState.devCards).forEach((devCardKey) => {
+    
+   Object.keys(gameState.devCards).forEach((devCardKey) => {
       if (
         gameState.player.inventory.devCards[devCardKey as DevCardTypes].some(
           (eachCard) => eachCard.roundPlayed === gameState.round
