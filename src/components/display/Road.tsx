@@ -30,6 +30,7 @@ export const Road = styled.h2<RoadProps>`
       ? "rotate(-120deg)"
       : "rotate(120deg)"};
 
+@media (hover: hover) and (pointer: fine) {
   &:hover {
     opacity: ${(props) => (props.occupied ? "100" : "100")}%;
     transform-origin: ${(props) =>
@@ -45,4 +46,5 @@ export const Road = styled.h2<RoadProps>`
       scaleX(1.5);
     z-index: 12;
   }
+}
 `;
