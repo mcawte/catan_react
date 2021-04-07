@@ -23,6 +23,10 @@ function App() {
   }, [socket]);
 
   //socket.current.emit("tokenSt", token)
+  var canHover = !(matchMedia('(hover: none)').matches);
+if (canHover) {
+  document.body.classList.add('can-hover');
+}
 
   return (
     <>

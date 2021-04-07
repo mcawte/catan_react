@@ -30,7 +30,7 @@ export const Road = styled.h2<RoadProps>`
       ? "rotate(-120deg)"
       : "rotate(120deg)"};
 
-  &:hover {
+&:can-hover &:hover {
     opacity: ${(props) => (props.occupied ? "100" : "100")}%;
     transform-origin: ${(props) =>
       props.direction === "side" ? "top" : props.direction};
