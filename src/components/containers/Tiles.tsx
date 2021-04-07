@@ -112,7 +112,7 @@ export default function Tiles({
                     left={roadLeft}
                     top={roadTop}
                     //onClick={() => updateRoad(tile, road)}
-                    onClick={() => socket.emit("updateSettlement",gameName, playerName, tile.row, tile.column, road.direction)}
+                    onClick={() => socket.emit("updateRoad",gameName, playerName, tile.row, tile.column, road.direction)}
                   />
                 );
               })}
