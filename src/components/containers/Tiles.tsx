@@ -2,7 +2,7 @@ import React from "react";
 import { Road } from "../display/Road";
 import { Ship } from "../display/Ship";
 import Tile from "../display/Tile";
-import { useResize } from "../../hooks/useResize";
+//import { useResize } from "../../hooks/useResize";
 
 import { Settlement } from "../display/Settlement";
 import {
