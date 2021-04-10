@@ -446,7 +446,7 @@ export default function GameChat(
                   }}
                 />
               </Grid>
-              <Grid container alignItems="flex-end">
+              
                 <Grid item xs={1}>
                   <Fab
                     color="primary"
@@ -468,7 +468,7 @@ export default function GameChat(
                   >
                     <Send />
                   </Fab>
-                </Grid>
+                
               </Grid>
             </Grid>
           </Grid>
