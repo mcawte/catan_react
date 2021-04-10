@@ -417,7 +417,7 @@ export default function GameChat(
             </Grid>
 
             <Grid container justify="flex-end">
-              <Grid item md={8}>
+              <Grid item xs={8}>
                 <TextField
                   id="outlined-basic-email"
                   label="Type something"

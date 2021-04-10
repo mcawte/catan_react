@@ -2,7 +2,7 @@ import { Socket } from "socket.io";
 
 export type ItemTypes = "road" | "town" | "city" | "devCard";
 export type PluralItemTypes = "roads" | "towns" | "cities" | "devCards";
-export type PlayerColor = "red" | "blue" | "green" | "white";
+export type PlayerColor = "red" | "blue" | "green" | "orange";
 export type ResourceType = "brick" | "forest" | "sheep" | "stone" | "wheat"
 export type TileType = "desert" | "ocean" | ResourceType
 export type TradeType = "4to1" | "3to1" | "2to1" | ResourceType
