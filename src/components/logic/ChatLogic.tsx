@@ -61,9 +61,7 @@ export default function Lobby() {
       setChatState({...chatState, gameName: newGameName, playerName: playerName, open: false})
     })
 
-    socket.on("playerJoinedLobby", (msg: any) => {
-      console.log(msg + " has joined the lobby");
-    });
+   
 
     socket.on("currentGames", (msg: any) => {
       //console.log("The current games are: ", msg);
