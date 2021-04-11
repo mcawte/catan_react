@@ -12,7 +12,7 @@ interface SettlementProps {
 
 const StyledSettlement = styled.h1<SettlementProps>`
   color: ${(props) => props.color};
-  font-size: ${(props) => props.tileHeight / 7}px;
+  font-size: ${(props) => props.tileHeight / 6}px;
   position: absolute;
   left: 0px;
   top: ${(props) =>

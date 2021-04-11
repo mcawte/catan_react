@@ -40,7 +40,7 @@ const StyledShip = styled.h1<ShipProps>`
   top: ${(props) => (props.tileWidth / 4) * Math.sqrt(3)}px;
   left: ${(props) => props.tileWidth / 2}px;
   z-index: 6;
-  font-size: ${(props) => props.tileWidth / 3.9}px;
+  font-size: ${(props) => props.tileWidth / 4.3}px;
   -webkit-transform: translate(-50%, -0%);
   transform: translate(-50%, -0%);
 `;
@@ -80,7 +80,7 @@ interface ShipRouteProps {
 const StyledShipRoute = styled.h1<ShipRouteProps>`
   position: absolute;
   color: ${(props) =>
-    props.playerColor !== null ? props.playerColor : "black"};
+    props.playerColor !== null ? props.playerColor : "white"};
   border-style: dashed;
   /* width: ${5}px;
   height: ${50}px; */
