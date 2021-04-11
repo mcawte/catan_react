@@ -2,10 +2,10 @@ import styled from "styled-components";
 import {
   GiCargoShip,
   //GiSheep,
-  GiWheat,
-  GiBrickPile,
-  GiStoneBlock,
-  GiWoodPile,
+ // GiWheat,
+ // GiBrickPile,
+  //GiStoneBlock,
+  //GiWoodPile,
 } from "react-icons/gi";
 import { PlayerColor, TradeType } from "../../../shared_types/types";
 
