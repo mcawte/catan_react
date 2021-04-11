@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {
   GiCargoShip,
-  GiSheep,
+  //GiSheep,
   GiWheat,
   GiBrickPile,
   GiStoneBlock,
@@ -70,7 +70,7 @@ export const Ship = (props: any) => {
         {props.ship.type === "stone" ? <GiStoneBlock /> : null}
         {props.ship.type === "forest" ? <GiWoodPile /> : null} */}
         {props.ship.type === "sheep" ? 
-          <span style={{ fontSize: `${props.tileWidth / 4}px` }}>🐏</span>
+          <span style={{ fontSize: `${props.tileWidth / 4}px` }}>{emojis["sheep"]}</span>
          : null}
         {props.ship.type === "wheat" ? <GiWheat /> : null}
         {props.ship.type === "brick" ? <GiBrickPile /> : null}
