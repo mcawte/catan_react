@@ -104,7 +104,7 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
                     
                   // {/* </Robber> */}
 
-                  <GiRobber size={`${tileWidth / 3.5}px`} color="purple" />
+                  <GiRobber size={`${tileWidth / 3}px`} color="purple" />
                 ) : (
                   <h1>{props.tileNumber}</h1>
                 )}
