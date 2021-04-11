@@ -64,6 +64,9 @@ export const Ship = (props: any) => {
         ship={props.ship}
       >
         <GiCargoShip />
+        <span style={{ fontSize: `${props.tileWidth / 4}px` }}>
+        🚢
+          </span>
         {/* {props.ship.type === "sheep" ? <GiSheep /> : null}
         {props.ship.type === "wheat" ? <GiWheat /> : null}
         {props.ship.type === "brick" ? <GiBrickPile /> : null}
