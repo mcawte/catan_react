@@ -124,7 +124,7 @@ const StyledShipRoute = styled.h1<ShipRouteProps>`
   height: ${50}px; */
   width: ${(props) => props.tileWidth / 10}px;
   height: ${(props) => props.tileWidth / 2.25}px;
-  opacity: 100%;
+  opacity: 50%;
   top: 50%;
   left: 50%;
   z-index: 6;
