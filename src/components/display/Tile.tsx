@@ -99,10 +99,12 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
                 }}
               >
                 {props.robber ? (
-                  <Robber tileWidth={tileWidth}>
-                    {/* <GiRobber style={{fontSize: "1.5x", color: "black"}} > <GiRobber style={{position: "absolute",fontSize: "1.3x", color: "white"}} /></GiRobber> */}
-                    <GiRobber style={{ fontSize: "1.5x", color: "black" }} />
-                  </Robber>
+                  // <Robber tileWidth={tileWidth}>
+                  //   {/* <GiRobber style={{fontSize: "1.5x", color: "black"}} > <GiRobber style={{position: "absolute",fontSize: "1.3x", color: "white"}} /></GiRobber> */}
+                    
+                  // {/* </Robber> */}
+
+                  <GiRobber size={`${tileWidth / 3.5}px`} color="purple" />
                 ) : (
                   <h1>{props.tileNumber}</h1>
                 )}
@@ -137,18 +139,18 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
   );
 }
 
-interface RobberProps {
-  tileWidth: number;
-}
+// interface RobberProps {
+//   tileWidth: number;
+// }
 
-export const Robber = styled.h2<RobberProps>`
-  font-size: ${(props) => props.tileWidth / 3}px;
-  background-color: "purple";
-  color: "purple";
-  &:hover {
-    opacity: 50%;
-  }
-`;
+// export const Robber = styled.h2<RobberProps>`
+//   font-size: ${(props) => props.tileWidth / 3.5}px;
+//   background-color: "purple";
+//   color: "purple";
+//   &:hover {
+//     opacity: 50%;
+//   }
+// `;
 
 interface TileContainerProps {
   tileWidth: number;
