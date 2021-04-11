@@ -46,12 +46,29 @@ const StyledShip = styled.h1<ShipProps>`
 `;
 
 export const Ship = (props: any) => {
+
+  const emojis: {
+    [key: string]: string;
+    wheat: string;
+    sheep: string;
+    forest: string;
+    stone: string;
+    brick: string;
+  } = { brick: "🧱", forest: "🌲", stone: "⛰️", wheat: "🌾", sheep: "🐏" };
+
   return (
     <>
       <StyledShip width={props.width}
         height={props.height} tileWidth={props.tileWidth} ship={props.ship}>
         <GiCargoShip />
-        {props.ship.type === "sheep" ? <GiSheep /> : null}
+        {/* {props.ship.type === "sheep" ? <GiSheep /> : null}
+        {props.ship.type === "wheat" ? <GiWheat /> : null}
+        {props.ship.type === "brick" ? <GiBrickPile /> : null}
+        {props.ship.type === "stone" ? <GiStoneBlock /> : null}
+        {props.ship.type === "forest" ? <GiWoodPile /> : null} */}
+        {props.ship.type === "sheep" ? <span style={{ fontSize: `${props.tileWidth/4}px` }}>
+                        {emojis["sheep"]}
+                      </span> : null}
         {props.ship.type === "wheat" ? <GiWheat /> : null}
         {props.ship.type === "brick" ? <GiBrickPile /> : null}
         {props.ship.type === "stone" ? <GiStoneBlock /> : null}
