@@ -1,3 +1,4 @@
+import zIndex from "@material-ui/core/styles/zIndex";
 import styled from "styled-components";
 // import {
 //   GiCargoShip,
@@ -64,7 +65,7 @@ export const Ship = (props: any) => {
         ship={props.ship}
       >
         {/* <GiCargoShip /> */}
-        <span style={{ fontSize: `${props.tileWidth / 4}px` }}>
+        <span style={{ fontSize: `${props.tileWidth / 4}px`, zIndex: 50 }}>
         🚢
           </span>
         {/* {props.ship.type === "sheep" ? <GiSheep /> : null}
@@ -73,27 +74,27 @@ export const Ship = (props: any) => {
         {props.ship.type === "stone" ? <GiStoneBlock /> : null}
         {props.ship.type === "forest" ? <GiWoodPile /> : null} */}
         {props.ship.type === "sheep" ? (
-          <span style={{ fontSize: `${props.tileWidth / 4}px` }}>
+          <span style={{ fontSize: `${props.tileWidth / 4}px`, zIndex: 50 }}>
             {emojis["sheep"]}
           </span>
         ) : null}
         {props.ship.type === "wheat" ? (
-          <span style={{ fontSize: `${props.tileWidth / 4}px` }}>
+          <span style={{ fontSize: `${props.tileWidth / 4}px`, zIndex: 50 }}>
             {emojis["wheat"]}
           </span>
         ) : null}
         {props.ship.type === "brick" ? (
-          <span style={{ fontSize: `${props.tileWidth / 4}px` }}>
+          <span style={{ fontSize: `${props.tileWidth / 4}px`, zIndex: 50 }}>
             {emojis["brick"]}
           </span>
         ) : null}
         {props.ship.type === "stone" ? (
-          <span style={{ fontSize: `${props.tileWidth / 4}px` }}>
+          <span style={{ fontSize: `${props.tileWidth / 4}px`, zIndex: 50 }}>
             {emojis["stone"]}
           </span>
         ) : null}
         {props.ship.type === "forest" ? (
-          <span style={{ fontSize: `${props.tileWidth / 4}px` }}>
+          <span style={{ fontSize: `${props.tileWidth / 4}px`, zIndex: 50 }}>
             {emojis["forest"]}
           </span>
         ) : null}
@@ -127,7 +128,7 @@ const StyledShipRoute = styled.h1<ShipRouteProps>`
   height: ${50}px; */
   width: ${(props) => props.tileWidth / 10}px;
   height: ${(props) => props.tileWidth / 2.25}px;
-  opacity: 50%;
+  opacity: 60%;
   top: 50%;
   left: 50%;
   z-index: 6;
