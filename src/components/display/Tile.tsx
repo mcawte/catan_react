@@ -142,8 +142,8 @@ interface RobberProps {
 }
 
 export const Robber = styled.h2<RobberProps>`
-  font-size: ${(props) => props.tileWidth / 5}px;
-  color: "black";
+  font-size: ${(props) => props.tileWidth / 4}px;
+  color: "purple";
   &:hover {
     opacity: 50%;
   }

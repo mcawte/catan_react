@@ -36,11 +36,11 @@ interface ShipProps {
 
 const StyledShip = styled.h1<ShipProps>`
   position: absolute;
-  color: rgb(0, 0, 0);
+  color: white;
   top: ${(props) => (props.tileWidth / 4) * Math.sqrt(3)}px;
   left: ${(props) => props.tileWidth / 2}px;
   z-index: 6;
-  font-size: ${(props) => props.tileWidth / 6}px;
+  font-size: ${(props) => props.tileWidth / 5}px;
   -webkit-transform: translate(-50%, -0%);
   transform: translate(-50%, -0%);
 `;
