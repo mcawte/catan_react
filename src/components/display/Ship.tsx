@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import {
-  GiCargoShip,
-  //GiSheep,
- // GiWheat,
- // GiBrickPile,
-  //GiStoneBlock,
-  //GiWoodPile,
-} from "react-icons/gi";
+// import {
+//   GiCargoShip,
+//   //GiSheep,
+//  // GiWheat,
+//  // GiBrickPile,
+//   //GiStoneBlock,
+//   //GiWoodPile,
+// } from "react-icons/gi";
 import { PlayerColor, TradeType } from "../../../shared_types/types";
 
 interface ShipProps {
@@ -63,7 +63,7 @@ export const Ship = (props: any) => {
         tileWidth={props.tileWidth}
         ship={props.ship}
       >
-        <GiCargoShip />
+        {/* <GiCargoShip /> */}
         <span style={{ fontSize: `${props.tileWidth / 4}px` }}>
         🚢
           </span>
