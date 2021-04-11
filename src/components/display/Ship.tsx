@@ -40,7 +40,7 @@ const StyledShip = styled.h1<ShipProps>`
   top: ${(props) => (props.tileWidth / 4) * Math.sqrt(3)}px;
   left: ${(props) => props.tileWidth / 2}px;
   z-index: 6;
-  font-size: ${(props) => props.tileWidth / 3}px;
+  font-size: ${(props) => props.tileWidth / 3.7}px;
   -webkit-transform: translate(-50%, -0%);
   transform: translate(-50%, -0%);
 `;
