@@ -46,7 +46,6 @@ const StyledShip = styled.h1<ShipProps>`
 `;
 
 export const Ship = (props: any) => {
-
   const emojis: {
     [key: string]: string;
     wheat: string;
@@ -58,17 +57,21 @@ export const Ship = (props: any) => {
 
   return (
     <>
-      <StyledShip width={props.width}
-        height={props.height} tileWidth={props.tileWidth} ship={props.ship}>
+      <StyledShip
+        width={props.width}
+        height={props.height}
+        tileWidth={props.tileWidth}
+        ship={props.ship}
+      >
         <GiCargoShip />
         {/* {props.ship.type === "sheep" ? <GiSheep /> : null}
         {props.ship.type === "wheat" ? <GiWheat /> : null}
         {props.ship.type === "brick" ? <GiBrickPile /> : null}
         {props.ship.type === "stone" ? <GiStoneBlock /> : null}
         {props.ship.type === "forest" ? <GiWoodPile /> : null} */}
-        {props.ship.type === "sheep" ? <span style={{ fontSize: `${props.tileWidth/4}px` }}>
-                        {emojis["sheep"]}
-                      </span> : null}
+        {props.ship.type === "sheep" ? 
+          <span style={{ fontSize: `${props.tileWidth / 4}px` }}>🐏</span>
+         : null}
         {props.ship.type === "wheat" ? <GiWheat /> : null}
         {props.ship.type === "brick" ? <GiBrickPile /> : null}
         {props.ship.type === "stone" ? <GiStoneBlock /> : null}
@@ -101,8 +104,8 @@ const StyledShipRoute = styled.h1<ShipRouteProps>`
   border-style: dashed;
   /* width: ${5}px;
   height: ${50}px; */
-  width: ${(props) => props.tileWidth/10}px;
-  height: ${(props) => props.tileWidth/2.25}px;
+  width: ${(props) => props.tileWidth / 10}px;
+  height: ${(props) => props.tileWidth / 2.25}px;
   opacity: 75%;
   top: 50%;
   left: 50%;
