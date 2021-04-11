@@ -69,13 +69,31 @@ export const Ship = (props: any) => {
         {props.ship.type === "brick" ? <GiBrickPile /> : null}
         {props.ship.type === "stone" ? <GiStoneBlock /> : null}
         {props.ship.type === "forest" ? <GiWoodPile /> : null} */}
-        {props.ship.type === "sheep" ? 
-          <span style={{ fontSize: `${props.tileWidth / 4}px` }}>{emojis["sheep"]}</span>
-         : null}
-        {props.ship.type === "wheat" ? <GiWheat /> : null}
-        {props.ship.type === "brick" ? <GiBrickPile /> : null}
-        {props.ship.type === "stone" ? <GiStoneBlock /> : null}
-        {props.ship.type === "forest" ? <GiWoodPile /> : null}
+        {props.ship.type === "sheep" ? (
+          <span style={{ fontSize: `${props.tileWidth / 4}px` }}>
+            {emojis["sheep"]}
+          </span>
+        ) : null}
+        {props.ship.type === "wheat" ? (
+          <span style={{ fontSize: `${props.tileWidth / 4}px` }}>
+            {emojis["wheat"]}
+          </span>
+        ) : null}
+        {props.ship.type === "brick" ? (
+          <span style={{ fontSize: `${props.tileWidth / 4}px` }}>
+            {emojis["brick"]}
+          </span>
+        ) : null}
+        {props.ship.type === "stone" ? (
+          <span style={{ fontSize: `${props.tileWidth / 4}px` }}>
+            {emojis["stone"]}
+          </span>
+        ) : null}
+        {props.ship.type === "forest" ? (
+          <span style={{ fontSize: `${props.tileWidth / 4}px` }}>
+            {emojis["forest"]}
+          </span>
+        ) : null}
       </StyledShip>
       <StyledShipRoute
         rotation={props.ship.tradeSettlement1.rotation}
@@ -106,7 +124,7 @@ const StyledShipRoute = styled.h1<ShipRouteProps>`
   height: ${50}px; */
   width: ${(props) => props.tileWidth / 10}px;
   height: ${(props) => props.tileWidth / 2.25}px;
-  opacity: 75%;
+  opacity: 100%;
   top: 50%;
   left: 50%;
   z-index: 6;
