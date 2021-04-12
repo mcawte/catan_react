@@ -64,15 +64,18 @@ export const Ship = (props: any) => {
         ship={props.ship}
       >
         {/* <GiCargoShip /> */}
-        <span style={{ fontSize: `${props.tileWidth / 4}px`, zIndex: 50 }}>
+        <span style={{ fontSize: `${props.tileWidth / 3.5}px`, zIndex: 50 }}>
         🚢
           </span>
+          {Object.keys(emojis).includes(props.ship.type) ? <span style={{ fontSize: `${props.tileWidth / 5}px`, zIndex: 50 }}>
+            {emojis[props.ship.type]}
+          </span> : null}
         {/* {props.ship.type === "sheep" ? <GiSheep /> : null}
         {props.ship.type === "wheat" ? <GiWheat /> : null}
         {props.ship.type === "brick" ? <GiBrickPile /> : null}
         {props.ship.type === "stone" ? <GiStoneBlock /> : null}
         {props.ship.type === "forest" ? <GiWoodPile /> : null} */}
-        {props.ship.type === "sheep" ? (
+        {/* {props.ship.type === "sheep" ? (
           <span style={{ fontSize: `${props.tileWidth / 4}px`, zIndex: 50 }}>
             {emojis["sheep"]}
           </span>
@@ -96,7 +99,7 @@ export const Ship = (props: any) => {
           <span style={{ fontSize: `${props.tileWidth / 4}px`, zIndex: 50 }}>
             {emojis["forest"]}
           </span>
-        ) : null}
+        ) : null} */}
       </StyledShip>
       <StyledShipRoute
         rotation={props.ship.tradeSettlement1.rotation}
@@ -121,8 +124,9 @@ interface ShipRouteProps {
 const StyledShipRoute = styled.h1<ShipRouteProps>`
   position: absolute;
   color: ${(props) =>
-    props.playerColor !== null ? props.playerColor : "white"};
+    props.playerColor !== null ? props.playerColor : "gray"};
   border-style: dashed;
+  z-index: 20;
   /* width: ${5}px;
   height: ${50}px; */
   width: ${(props) => props.tileWidth / 10}px;
