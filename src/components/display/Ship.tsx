@@ -65,41 +65,14 @@ export const Ship = (props: any) => {
       >
         {/* <GiCargoShip /> */}
         <span style={{ fontSize: `${props.tileWidth / 3.5}px`, zIndex: 50 }}>
-        🚢
-          </span>
-          {Object.keys(emojis).includes(props.ship.type) ? <span style={{ fontSize: `${props.tileWidth / 5}px`, zIndex: 50 }}>
+          🚢
+        </span>
+        {Object.keys(emojis).includes(props.ship.type) ? (
+          <span style={{ fontSize: `${props.tileWidth / 4.5}px`, zIndex: 50 }}>
             {emojis[props.ship.type]}
-          </span> : null}
-        {/* {props.ship.type === "sheep" ? <GiSheep /> : null}
-        {props.ship.type === "wheat" ? <GiWheat /> : null}
-        {props.ship.type === "brick" ? <GiBrickPile /> : null}
-        {props.ship.type === "stone" ? <GiStoneBlock /> : null}
-        {props.ship.type === "forest" ? <GiWoodPile /> : null} */}
-        {/* {props.ship.type === "sheep" ? (
-          <span style={{ fontSize: `${props.tileWidth / 4}px`, zIndex: 50 }}>
-            {emojis["sheep"]}
           </span>
         ) : null}
-        {props.ship.type === "wheat" ? (
-          <span style={{ fontSize: `${props.tileWidth / 4}px`, zIndex: 50 }}>
-            {emojis["wheat"]}
-          </span>
-        ) : null}
-        {props.ship.type === "brick" ? (
-          <span style={{ fontSize: `${props.tileWidth / 4}px`, zIndex: 50 }}>
-            {emojis["brick"]}
-          </span>
-        ) : null}
-        {props.ship.type === "stone" ? (
-          <span style={{ fontSize: `${props.tileWidth / 4}px`, zIndex: 50 }}>
-            {emojis["stone"]}
-          </span>
-        ) : null}
-        {props.ship.type === "forest" ? (
-          <span style={{ fontSize: `${props.tileWidth / 4}px`, zIndex: 50 }}>
-            {emojis["forest"]}
-          </span>
-        ) : null} */}
+        
       </StyledShip>
       <StyledShipRoute
         rotation={props.ship.tradeSettlement1.rotation}
