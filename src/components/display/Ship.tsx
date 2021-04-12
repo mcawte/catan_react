@@ -68,7 +68,7 @@ export const Ship = (props: any) => {
           🚢
         </span>
         {Object.keys(emojis).includes(props.ship.type) ? (
-          <span style={{ fontSize: `${props.tileWidth / 4.75}px`, zIndex: 50 }}>
+          <span style={{ fontSize: `${props.tileWidth / 5}px`, zIndex: 50 }}>
             {emojis[props.ship.type]}
           </span>
         ) : null}
