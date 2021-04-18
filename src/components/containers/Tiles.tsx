@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Road } from "../display/Road";
 import { Ship } from "../display/Ship";
 import Tile from "../display/Tile";
-import { useResize } from "../../hooks/useResize";
+//import { useResize } from "../../hooks/useResize";
 
 import { Settlement } from "../display/Settlement";
 import {
@@ -13,6 +13,7 @@ import {
   Robber,
 } from "../../../shared_types/types";
 import { socket } from "../../service/socket";
+import { useResizeWithRef } from "../../hooks/useResizeWithRef";
 
 const boardWidth = 7;
 
@@ -55,8 +56,15 @@ export default function Tiles({
   updateSettlement,
   updateRobber,
 }: React.PropsWithChildren<NewBoardProps>) {
-  const { width } = useResize();
+
+  const componentRef = useRef<HTMLDivElement>(null)
+  //const { width } = useResize();
+
+  const { width } = useResizeWithRef(componentRef);
+
   const tileSize = 0.93 * (0.5 * width) / boardWidth;
+
+  
 
   //const itemTypes: ItemTypes[] = ["road", "town", "city", "devCard"];
 
@@ -82,6 +90,7 @@ export default function Tiles({
         overflow: "auto",
         //borderStyle: "dotted"
       }}
+      ref={componentRef}
     >
       {/* The width is {width} and height {height} */}
       {tiles.map((tile) => {
