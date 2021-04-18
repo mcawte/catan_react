@@ -92,7 +92,7 @@ export default function Tiles({
         //height: "85vh",
         overflow: "auto",
         //borderStyle: "dotted"
-        transform: "rotate(90deg)"
+        //transform: "rotate(90deg)"
       }}
       ref={componentRef}
     >

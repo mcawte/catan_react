@@ -389,7 +389,7 @@ export default function BoardLogic({
       />
 
       {/* <ResourceBar gameState={gameState} /> */}
-
+    <div style={{transform: "rotate(90deg)"}}>
       <Tiles
         gameName={gameState.gameName}
         playerName={gameState.player.name}
@@ -404,7 +404,7 @@ export default function BoardLogic({
           gameState.playerTurn.stage === 2
         }
       />
-
+</div>
       <div
         style={{
           marginLeft: "55vw",
