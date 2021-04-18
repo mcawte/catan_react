@@ -57,7 +57,7 @@ export const Ship = (props: any) => {
 
   return (
     <>
-    <div style={{transform: "rotate(90deg)"}}>
+    <div style={{transform: "rotate(-90deg)"}}>
       <StyledShip
         width={props.width}
         height={props.height}
