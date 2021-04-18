@@ -84,15 +84,12 @@ export default function Tiles({
     <div
       style={{
         position: "absolute",
-        //top: `${tileSize / 10}px`,
-        //left: `${tileSize / 10}px`,
-        top: `2vh`,
-        left: `2vw`,
+        top: `${tileSize / 10}px`,
+        left: `${tileSize / 10}px`,
         width: "53vw",
         //height: "85vh",
         overflow: "auto",
         //borderStyle: "dotted"
-        //transform: "rotate(90deg)"
       }}
       ref={componentRef}
     >
