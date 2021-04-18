@@ -62,7 +62,8 @@ export default function Tiles({
 
   const { width } = useResizeWithRef(componentRef);
 
-  const tileSize = 0.93 * (0.5 * width) / boardWidth;
+  //const tileSize = 0.93 * (0.5 * width) / boardWidth;
+  const tileSize =  (0.95 * width) / boardWidth;
 
   
 
