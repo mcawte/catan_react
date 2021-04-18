@@ -87,7 +87,7 @@ export default function Tiles({
         top: `${tileSize / 10}px`,
         left: `${tileSize / 10}px`,
         width: "53vw",
-        height: "85vh",
+        //height: "85vh",
         overflow: "auto",
         //borderStyle: "dotted"
       }}
