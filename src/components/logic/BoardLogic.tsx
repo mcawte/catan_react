@@ -17,6 +17,7 @@ import TradeOptions from "../display/TradeOptions";
 import MonopolyCardOptions from "../display/MonopolyCardOptions";
 import YearOfPlentyCardOptions from "../display/YearOfPlentyCardOptions";
 import RobberOptions from "../display/RobberOptions";
+import ResourceBar from "../display/ResourceBar";
 //import { RoadInterface } from "../types";
 
 interface BoardLogicProps {
@@ -84,10 +85,7 @@ export default function BoardLogic({
         }
         break;
       case "city":
-        if (
-          playerResources.stone < 3 ||
-          playerResources.wheat < 2
-        ) {
+        if (playerResources.stone < 3 || playerResources.wheat < 2) {
           canBuy = false;
         }
         break;
@@ -118,8 +116,8 @@ export default function BoardLogic({
     let disable = false;
     if (gameState.playerTurn.stage < 4) {
       disable = true;
-    } 
-    
+    }
+
     if (gameState.playerTurn.stage === 0) {
       disable = false;
     }
@@ -140,8 +138,7 @@ export default function BoardLogic({
       disable = true;
     }
 
-    
-   Object.keys(gameState.devCards).forEach((devCardKey) => {
+    Object.keys(gameState.devCards).forEach((devCardKey) => {
       if (
         gameState.player.inventory.devCards[devCardKey as DevCardTypes].some(
           (eachCard) => eachCard.roundPlayed === gameState.round
@@ -391,6 +388,8 @@ export default function BoardLogic({
         messageColor={gameState.actionMessage.color}
       />
 
+      <ResourceBar gameState={gameState} />
+
       <Tiles
         gameName={gameState.gameName}
         playerName={gameState.player.name}
@@ -406,63 +405,136 @@ export default function BoardLogic({
         }
       />
 
-      
-        <div
-          style={{
-            marginLeft: "55vw",
-            marginTop: "8vh",
-          }}
+      <div
+        style={{
+          marginLeft: "55vw",
+          marginTop: "8vh",
+        }}
+      >
+        <Dice
+          dice1={gameState?.diceRoll.dice1}
+          dice2={gameState?.diceRoll.dice2}
+        />
+      </div>
+      <div style={{ marginLeft: "55vw", marginTop: "4vh" }}>
+        <button
+          onClick={() =>
+            socket.emit("rollDice", gameState?.gameName, gameState?.player.name)
+          }
+          disabled={
+            !(
+              gameState.player.name === gameState.playerTurn.player.name &&
+              gameState.playerTurn.stage === 0
+            )
+          }
         >
-          
-          <Dice
-            dice1={gameState?.diceRoll.dice1}
-            dice2={gameState?.diceRoll.dice2}
-          />
-          </div>
-          <div style={{ marginLeft: "55vw", marginTop: "4vh" }}>
+          Roll Dice
+        </button>
+        <button
+          onClick={() =>
+            setModals((prevState) => ({ ...prevState, trade: true }))
+          }
+          disabled={
+            !(
+              gameState.playerTurn.stage > 3 &&
+              gameState.player.name === gameState.playerTurn.player.name &&
+              gameState.round > 1
+            )
+          }
+        >
+          Trade
+        </button>
+
+        <button
+          onClick={() => setTradeModal({ open: true })}
+          disabled={gameState.playerTurn.stage !== 4}
+        >
+          Player Trade
+        </button>
+
+        <button
+          onClick={() =>
+            socket.emit(
+              "endTurn",
+              gameState.gameName,
+              gameState.player.name,
+              gameState
+            )
+          }
+          disabled={
+            !(
+              gameState.player.name === gameState.playerTurn.player.name &&
+              gameState.playerTurn.stage > 3
+            )
+          }
+        >
+          End Turn
+        </button>
+      </div>
+
+      <div style={{ marginLeft: "55vw", marginTop: "1vh" }}>
+        {itemTypes.map((itemToBuy) => (
           <button
             onClick={() =>
               socket.emit(
-                "rollDice",
-                gameState?.gameName,
-                gameState?.player.name
+                "buyItem",
+                gameState.gameName,
+                gameState.player.name,
+                itemToBuy
               )
             }
-            disabled={
-              !(
-                gameState.player.name === gameState.playerTurn.player.name &&
-                gameState.playerTurn.stage === 0
-              )
-            }
+            disabled={!canBuyItem(itemToBuy)}
           >
-            Roll Dice
+            {`Buy ${itemToBuy}`}
           </button>
-          <button
-            onClick={() =>
-              setModals((prevState) => ({ ...prevState, trade: true }))
-            }
-            disabled={
-              !(
-                gameState.playerTurn.stage > 3 &&
-                gameState.player.name === gameState.playerTurn.player.name &&
-                gameState.round > 1
-              )
-            }
-          >
-            Trade
-          </button>
-
-          <button
-            onClick={() => setTradeModal({ open: true })}
-            disabled={gameState.playerTurn.stage !== 4}
-          >
-            Player Trade
-          </button>
-
+        ))}
+      </div>
+      {/* dev cards here */}
+      <div style={{ marginLeft: "55vw", marginTop: "1vh" }}>
+        {gameState.playerTurn.player.name === gameState.player.name &&
+        gameState.playerTurn.stage > 3
+          ? Object.keys(gameState.player.inventory.devCards).map(
+              (devCardKey) => {
+                return gameState.player.inventory.devCards[devCardKey].length >
+                  0 && devCardKey !== "victory" ? (
+                  <button
+                    onClick={() => {
+                      if (devCardKey === "monopoly") {
+                        setModals((prevState) => ({
+                          ...prevState,
+                          monopoly: true,
+                        }));
+                      } else if (devCardKey === "yearOfPlenty") {
+                        setModals((prevState) => ({
+                          ...prevState,
+                          yearOfPlenty: true,
+                        }));
+                      } else {
+                        socket.emit(
+                          "playDevCard",
+                          gameState.gameName,
+                          gameState.player.name,
+                          devCardKey
+                        );
+                      }
+                    }}
+                    disabled={isDevCardDisabled(devCardKey as DevCardTypes)}
+                  >
+                    {`Play ${devCardKey} devCard`}
+                  </button>
+                ) : null;
+              }
+            )
+          : null}
+      </div>
+      {/* here */}
+      <div style={{ marginLeft: "55vw", marginTop: "4vh" }}>
+        {gameState.playerTurn.player.name === gameState.player.name &&
+        gameState.playerTurn.stage === 2 ? (
           <button
             onClick={() =>
               socket.emit(
-                "endTurn",
+                "newRobberPosition",
                 gameState.gameName,
                 gameState.player.name,
                 gameState
@@ -470,195 +542,114 @@ export default function BoardLogic({
             }
             disabled={
               !(
-                gameState.player.name === gameState.playerTurn.player.name &&
-                gameState.playerTurn.stage > 3
+                gameState.playerTurn.stage === 2 &&
+                gameState.playerTurn.player.name === gameState.player.name
               )
             }
           >
-            End Turn
+            Submit Robber Position
           </button>
-        </div>
-        
-
-        <div style={{ marginLeft: "55vw", marginTop: "1vh" }}>
-          {itemTypes.map((itemToBuy) => (
-            <button
-              onClick={() =>
-                socket.emit(
-                  "buyItem",
-                  gameState.gameName,
-                  gameState.player.name,
-                  itemToBuy
-                )
+        ) : null}
+      </div>
+      <div style={{ marginLeft: "55vw", marginTop: "1vh" }}>
+        {gameState.playerTurn.player.name === gameState.player.name &&
+        gameState.playerTurn.stage === 3
+          ? gameState.robber.playersToStealFrom.map((playerToStealFrom) => (
+              <button
+                onClick={() =>
+                  socket.emit(
+                    "stealFrom",
+                    gameState.gameName,
+                    gameState.player.name,
+                    playerToStealFrom
+                  )
+                }
+              >
+                {`Steal from ${playerToStealFrom}`}
+              </button>
+            ))
+          : null}
+      </div>
+      <div style={{ marginLeft: "55vw", marginTop: "4vh" }}>
+        <Grid container justify="flex-start" spacing={2} direction="row">
+          <Grid item>
+            Resources: <br />
+            {Object.entries(gameState.player.inventory.resources).map(
+              ([key, value]) => {
+                return (
+                  <div>
+                    {`${key}: `}{" "}
+                    <span style={{ fontSize: "1.5rem" }}>
+                      {" "}
+                      {`${`${emojis[key]} `.repeat(value)}`}
+                    </span>
+                    <br />
+                  </div>
+                );
               }
-              disabled={!canBuyItem(itemToBuy)}
-            >
-              {`Buy ${itemToBuy}`}
-            </button>
-          ))}
-        </div>
-        {/* dev cards here */}
-        <div style={{ marginLeft: "55vw", marginTop: "1vh" }}>
-          {gameState.playerTurn.player.name === gameState.player.name &&
-          gameState.playerTurn.stage > 3
-            ? Object.keys(gameState.player.inventory.devCards).map(
-                (devCardKey) => {
-                  return gameState.player.inventory.devCards[devCardKey]
-                    .length > 0 && devCardKey !== "victory" ? (
-                    <button
-                      onClick={() => {
-                        if (devCardKey === "monopoly") {
-                          setModals((prevState) => ({
-                            ...prevState,
-                            monopoly: true,
-                          }));
-                        } else if (devCardKey === "yearOfPlenty") {
-                          setModals((prevState) => ({
-                            ...prevState,
-                            yearOfPlenty: true,
-                          }));
-                        } else {
-                          socket.emit(
-                            "playDevCard",
-                            gameState.gameName,
-                            gameState.player.name,
-                            devCardKey
-                          );
-                        }
-                      }}
-                      disabled={isDevCardDisabled(devCardKey as DevCardTypes)}
-                    >
-                      {`Play ${devCardKey} devCard`}
-                    </button>
-                  ) : null;
-                }
-              )
-            : null}
-        </div>
-        {/* here */}
-        <div style={{ marginLeft: "55vw", marginTop: "4vh" }}>
-          {gameState.playerTurn.player.name === gameState.player.name &&
-          gameState.playerTurn.stage === 2 ? (
-            <button
-              onClick={() =>
-                socket.emit(
-                  "newRobberPosition",
-                  gameState.gameName,
-                  gameState.player.name,
-                  gameState
-                )
-              }
-              disabled={
-                !(
-                  gameState.playerTurn.stage === 2 &&
-                  gameState.playerTurn.player.name === gameState.player.name
-                )
-              }
-            >
-              Submit Robber Position
-            </button>
-          ) : null}
-        </div>
-        <div style={{ marginLeft: "55vw", marginTop: "1vh" }}>
-          {gameState.playerTurn.player.name === gameState.player.name &&
-          gameState.playerTurn.stage === 3
-            ? gameState.robber.playersToStealFrom.map((playerToStealFrom) => (
-                <button
-                  onClick={() =>
-                    socket.emit(
-                      "stealFrom",
-                      gameState.gameName,
-                      gameState.player.name,
-                      playerToStealFrom
-                    )
-                  }
-                >
-                  {`Steal from ${playerToStealFrom}`}
-                </button>
-              ))
-            : null}
-        </div>
-        <div style={{ marginLeft: "55vw", marginTop: "4vh" }}>
-          <Grid container justify="flex-start" spacing={2} direction="row">
-            <Grid item>
-              Resources: <br />
-              {Object.entries(gameState.player.inventory.resources).map(
-                ([key, value]) => {
-                  return (
-                    <div>
-                      {`${key}: `}{" "}
-                      <span style={{ fontSize: "1.5rem" }}>
-                        {" "}
-                        {`${`${emojis[key]} `.repeat(value)}`}
-                      </span>
-                      <br />
-                    </div>
-                  );
-                }
-              )}
-            </Grid>
-            <Grid item>
-              DevCards in hand: <br />
-              {Object.entries(gameState.player.inventory.devCards).map(
-                ([key, value]) => {
-                  return (
-                    <div>
-                      {`${key}: ${
-                        value.filter((eachValue) => eachValue.roundPlayed === 0)
-                          .length
-                      } `}
-                      <br />
-                    </div>
-                  );
-                }
-              )}
-            </Grid>
-            <Grid item>
-              Played devCards: <br />
-              {Object.entries(gameState.player.inventory.devCards).map(
-                ([key, value]) => {
-                  return (
-                    <div>
-                      {`${key}: ${
-                        value.filter((eachValue) => eachValue.roundPlayed > 0)
-                          .length
-                      } `}
-                      <br />
-                    </div>
-                  );
-                }
-              )}
-            </Grid>
+            )}
           </Grid>
-          <br />
-          {/* Your roads, towns, and cities are:{" "} */}
-          Roads: {JSON.stringify(gameState.player.inventory.roads)}, Towns:{" "}
-          {JSON.stringify(gameState.player.inventory.towns)}, Cities:{" "}
-          {JSON.stringify(gameState.player.inventory.cities)}
-          <br />
-          {gameState.longestRoad.playerName !== ""
-            ? `The longest road belongs to ${gameState.longestRoad.playerName} and is ${gameState.longestRoad.length} pieces long.`
-            : null}
-          <br />
-          {gameState.largestArmy.playerName !== ""
-            ? `The largest army belongs to ${gameState.largestArmy.playerName} and is ${gameState.largestArmy.size} units strong.`
-            : null}
-          {/* The largest army is: {JSON.stringify(gameState.largestArmy)} */}
-          <br />
-          {`You have ${gameState.player.points} total points with ${gameState.player.inventory.devCards.victory.length} victory points.`}
-          <br />
-          <br />
-          {`There are ${gameState.resourceCards} resource cards left and ${gameState.devCards} devCards left.`}
-          <br />
-          Road cost: <span style={{ fontSize: "1.5rem" }}>🧱 🌲</span>
-          <br />
-          Town cost: <span style={{ fontSize: "1.5rem" }}>🧱 🌲 🐏 🌾</span>
-          <br />
-          City cost: <span style={{ fontSize: "1.5rem" }}>⛰️ ⛰️ ⛰️ 🌾 🌾</span>
-          <br />
-          Dev card costs: <span style={{ fontSize: "1.5rem" }}>⛰️ 🐏 🌾</span>
-        </div>
-      
+          <Grid item>
+            DevCards in hand: <br />
+            {Object.entries(gameState.player.inventory.devCards).map(
+              ([key, value]) => {
+                return (
+                  <div>
+                    {`${key}: ${
+                      value.filter((eachValue) => eachValue.roundPlayed === 0)
+                        .length
+                    } `}
+                    <br />
+                  </div>
+                );
+              }
+            )}
+          </Grid>
+          <Grid item>
+            Played devCards: <br />
+            {Object.entries(gameState.player.inventory.devCards).map(
+              ([key, value]) => {
+                return (
+                  <div>
+                    {`${key}: ${
+                      value.filter((eachValue) => eachValue.roundPlayed > 0)
+                        .length
+                    } `}
+                    <br />
+                  </div>
+                );
+              }
+            )}
+          </Grid>
+        </Grid>
+        <br />
+        {/* Your roads, towns, and cities are:{" "} */}
+        Roads: {JSON.stringify(gameState.player.inventory.roads)}, Towns:{" "}
+        {JSON.stringify(gameState.player.inventory.towns)}, Cities:{" "}
+        {JSON.stringify(gameState.player.inventory.cities)}
+        <br />
+        {gameState.longestRoad.playerName !== ""
+          ? `The longest road belongs to ${gameState.longestRoad.playerName} and is ${gameState.longestRoad.length} pieces long.`
+          : null}
+        <br />
+        {gameState.largestArmy.playerName !== ""
+          ? `The largest army belongs to ${gameState.largestArmy.playerName} and is ${gameState.largestArmy.size} units strong.`
+          : null}
+        {/* The largest army is: {JSON.stringify(gameState.largestArmy)} */}
+        <br />
+        {`You have ${gameState.player.points} total points with ${gameState.player.inventory.devCards.victory.length} victory points.`}
+        <br />
+        <br />
+        {`There are ${gameState.resourceCards} resource cards left and ${gameState.devCards} devCards left.`}
+        <br />
+        Road cost: <span style={{ fontSize: "1.5rem" }}>🧱 🌲</span>
+        <br />
+        Town cost: <span style={{ fontSize: "1.5rem" }}>🧱 🌲 🐏 🌾</span>
+        <br />
+        City cost: <span style={{ fontSize: "1.5rem" }}>⛰️ ⛰️ ⛰️ 🌾 🌾</span>
+        <br />
+        Dev card costs: <span style={{ fontSize: "1.5rem" }}>⛰️ 🐏 🌾</span>
+      </div>
 
       <Modal
         open={tradeModal.open}

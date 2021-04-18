@@ -56,7 +56,7 @@ export default function Tiles({
   updateRobber,
 }: React.PropsWithChildren<NewBoardProps>) {
   const { width } = useResize();
-  const tileSize = (0.5 * width) / boardWidth;
+  const tileSize = 0.93 * (0.5 * width) / boardWidth;
 
   //const itemTypes: ItemTypes[] = ["road", "town", "city", "devCard"];
 
@@ -77,6 +77,10 @@ export default function Tiles({
         position: "absolute",
         top: `${tileSize / 10}px`,
         left: `${tileSize / 10}px`,
+        width: "53vw",
+        height: "85vh",
+        overflow: "auto",
+        //borderStyle: "dotted"
       }}
     >
       {/* The width is {width} and height {height} */}
