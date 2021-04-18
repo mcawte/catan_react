@@ -44,7 +44,7 @@ export const Settlement = (props: any) => {
   //console.log("The new type is: ", props.type)
   return (
     <>
-    <div style={{transform: "rotate(90deg)"}}>
+    {/* <div style={{transform: "rotate(90deg)"}}> */}
       <StyledSettlement
         direction={props.direction}
         color={props.color}
@@ -57,7 +57,7 @@ export const Settlement = (props: any) => {
           size="1x"
         />
       </StyledSettlement>
-      </div>
+      {/* </div> */}
     </>
   );
 };

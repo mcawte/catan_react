@@ -63,7 +63,7 @@ export default function Tiles({
   const { width } = useResizeWithRef(componentRef);
 
   //const tileSize = 0.93 * (0.5 * width) / boardWidth;
-  const tileSize =  (0.95 * width) / boardWidth;
+  const tileSize =  (0.5 * width) / boardWidth;
 
   
 
@@ -87,7 +87,7 @@ export default function Tiles({
         top: `${tileSize / 10}px`,
         left: `${tileSize / 10}px`,
         width: "53vw",
-        //height: "85vh",
+        height: "85vh",
         overflow: "auto",
         //borderStyle: "dotted"
       }}
