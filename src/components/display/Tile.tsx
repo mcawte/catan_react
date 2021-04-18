@@ -87,7 +87,7 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
               <div
                 className="tileNumber"
                 style={{
-                  transform: "rotate(-90deg)",
+                  // transform: "rotate(-90deg)",
                   fontSize: `${textFontSize}px`,
                   // textShadow: `-${textFontSize}px -${textFontSize}px 0 #000, ${textFontSize}px -${textFontSize}px 0 #000, -${textFontSize}px ${textFontSize}px 0 #000, ${
                   //   0.05 * textFontSize
