@@ -488,10 +488,11 @@ export default function GameChat(
                     }
                   }}
                 />
+                </div>
               
-              
-                
-                  <Fab
+              <div>
+              <Grid item xs={1} >
+              <Fab
                     color="primary"
                     aria-label="add"
                     onClick={(e) => {
@@ -511,13 +512,15 @@ export default function GameChat(
                   >
                     <Send />
                   </Fab>
+              </Grid>
+                      
+              
+              
+                
+                  
                 </div>
               
-              <div>
-              <Grid item xs={1} >
-                
-              </Grid>
-              </div>
+              
               </div>
             
                         
