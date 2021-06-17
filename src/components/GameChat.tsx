@@ -271,6 +271,7 @@ export default function GameChat(
 
                     <div className="w-2/3 bg-yellow-200 flex-row">
 
+                    <div className="bg-green-300 h-45% overflow-y-scroll border-4 border-green-700">
                       <div>
                       
               Propose
@@ -431,9 +432,11 @@ export default function GameChat(
                 onChange={(e) => setPropose(e, "inReturnFor")}
               />
             </div>
+
+            </div>
                       </div>
 
-                      <div className="bg-green-300 h-25% overflow-y-scroll border-4 border-green-900">
+                      <div className="bg-green-300 h-35% overflow-y-scroll border-4 border-green-900">
                         
                         {/* chat */}
                         
