@@ -135,7 +135,7 @@ export default function ChatBox({gameName, playerName, chatMessages, children}: 
                       <div className="bg-green-300 h-90%">
                         
                         {/* chat */}
-                        <div className={classes.messageArea}>
+                        <div className="overflow-y-auto">
               
                 <List>
                   {chatMessages.map((chatMessage, index) =>
