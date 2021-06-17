@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { socket } from "../service/socket";
 import {
-  Paper,
   Grid,
-  Divider,
   TextField,
   Typography,
   List,
@@ -12,34 +10,33 @@ import {
   ListItemText,
   Avatar,
   Fab,
-  makeStyles,
-  Container,
   Button,
   Box,
+  Divider,
 } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 import useChatMessages from "../hooks/useChatMessages";
 import useCurrentPlayers from "../hooks/useCurrentPlayers";
 import { PublicGameState} from "../../shared_types/types";
 
-const useStyles = makeStyles({
-  table: {
-    minHeight: "500px",
-  },
-  chatSection: {
-    width: "100%",
-    height: "80vh",
-    minHeight: "500px",
-  },
-  borderRight500: {
-    borderRight: "1px solid #e0e0e0",
-  },
-  messageArea: {
-    height: "5vh",
-    minHeight: "300px",
-    overflowY: "auto",
-  },
-});
+// const useStyles = makeStyles({
+//   table: {
+//     minHeight: "500px",
+//   },
+//   chatSection: {
+//     width: "100%",
+//     height: "80vh",
+//     minHeight: "500px",
+//   },
+//   borderRight500: {
+//     borderRight: "1px solid #e0e0e0",
+//   },
+//   messageArea: {
+//     height: "5vh",
+//     minHeight: "300px",
+//     overflowY: "auto",
+//   },
+// });
 
 interface GameChatProps {
   gameState: PublicGameState;
@@ -56,7 +53,7 @@ interface GameChatProps {
 export default function GameChat(
   props: React.PropsWithChildren<GameChatProps>
 ) {
-  const classes = useStyles();
+  //const classes = useStyles();
 
   const [gameChat, setGameChat] = useState({
     message: "",
@@ -260,6 +257,14 @@ export default function GameChat(
                     </Button>
                   )}
                 </Box>
+                <Divider />
+              <List>
+                <ListItem>
+                  <ListItemText>Players</ListItemText>
+                </ListItem>
+
+                {currentPlayers.map((player) => avatarBlock(player))}
+              </List>
                         
                         </div>
                     </div>
