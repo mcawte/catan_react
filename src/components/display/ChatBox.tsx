@@ -10,34 +10,33 @@ import {
   ListItemText,
   Avatar,
   Fab,
-  makeStyles,
   Box,
 } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 
 
 
-const useStyles = makeStyles({
-  table: {
-    minHeight: "500px",
-  },
-  chatSection: {
-    width: "100%",
-    height: "80vh",
-    minHeight: "500px",
-  },
-  headBG: {
-    backgroundColor: "#e0e0e0",
-  },
-  borderRight500: {
-    borderRight: "1px solid #e0e0e0",
-  },
-  messageArea: {
-    //height: "70vh",
-    //minHeight: "400px",
-    overflowY: "auto",
-  },
-});
+// const useStyles = makeStyles({
+//   table: {
+//     minHeight: "500px",
+//   },
+//   chatSection: {
+//     width: "100%",
+//     height: "80vh",
+//     minHeight: "500px",
+//   },
+//   headBG: {
+//     backgroundColor: "#e0e0e0",
+//   },
+//   borderRight500: {
+//     borderRight: "1px solid #e0e0e0",
+//   },
+//   messageArea: {
+//     //height: "70vh",
+//     //minHeight: "400px",
+//     overflowY: "auto",
+//   },
+// });
 
 
 
