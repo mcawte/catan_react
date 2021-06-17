@@ -271,7 +271,7 @@ export default function GameChat(
 
                     <div className="w-2/3 bg-yellow-200 flex-row">
 
-                    <div className="bg-green-300 h-45% overflow-y-scroll border-4 border-green-700">
+                    <div className="bg-green-300 h-55% overflow-y-scroll border-4 border-green-700">
                       <div>
                       
               Propose
