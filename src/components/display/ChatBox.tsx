@@ -131,10 +131,10 @@ export default function ChatBox({gameName, playerName, chatMessages, children}: 
                     </div>
 
                     <div className="w-2/3 bg-yellow-200 flex-row">
-                      <div className="bg-green-300 h-90%">
+                      <div className="bg-green-300 h-90% overflow-y-scroll border-4 border-green-900">
                         
                         {/* chat */}
-                        <div className="overflow-y-auto">
+                        
               
                 <List>
                   {chatMessages.map((chatMessage, index) =>
@@ -149,7 +149,7 @@ export default function ChatBox({gameName, playerName, chatMessages, children}: 
                 </List>
 
                 
-            </div>
+            
                         </div>
                       <div className="bg-blue-500 bottom-0 h-10%">
                         
