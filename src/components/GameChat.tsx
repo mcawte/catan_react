@@ -272,8 +272,9 @@ export default function GameChat(
                     <div className="w-2/3 bg-yellow-200 flex-row">
 
                       <div>
-                      <Grid item xs={2}>
+                      
               Propose
+              <div className="flex-row">
               <TextField
                 id="forest"
                 name="forest"
@@ -349,10 +350,11 @@ export default function GameChat(
                 value={props.gameState.currentTrade.offers.wheat}
                 onChange={(e) => setPropose(e, "offers")}
               />
-            </Grid>
+            </div>
             
-            <Grid item xs={2}>
+            
               For
+              <div className="flex-row">
               <TextField
                 id="forest"
                 name="forest"
@@ -428,7 +430,7 @@ export default function GameChat(
                 value={props.gameState.currentTrade.inReturnFor.wheat}
                 onChange={(e) => setPropose(e, "inReturnFor")}
               />
-            </Grid>
+            </div>
                       </div>
 
                       <div className="bg-green-300 flex-1 overflow-y-scroll border-4 border-green-900">
