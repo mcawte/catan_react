@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^6.1.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-regular-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
@@ -30,9 +31,9 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -57,7 +58,10 @@
     "@types/socket.io": "^2.1.12",
     "@types/styled-components": "^5.1.7",
     "@types/styled-system": "^5.1.10",
-    "styled-system": "^5.1.5"
+    "autoprefixer": "^9",
+    "postcss": "^7",
+    "styled-system": "^5.1.5",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "resolutions": {
     "styled-components": "^5"
