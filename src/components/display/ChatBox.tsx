@@ -33,8 +33,8 @@ const useStyles = makeStyles({
     borderRight: "1px solid #e0e0e0",
   },
   messageArea: {
-    height: "70vh",
-    minHeight: "400px",
+    //height: "70vh",
+    //minHeight: "400px",
     overflowY: "auto",
   },
 });
