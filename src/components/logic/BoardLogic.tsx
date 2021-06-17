@@ -17,6 +17,7 @@ import TradeOptions from "../display/TradeOptions";
 import MonopolyCardOptions from "../display/MonopolyCardOptions";
 import YearOfPlentyCardOptions from "../display/YearOfPlentyCardOptions";
 import RobberOptions from "../display/RobberOptions";
+import ResourceBar from "../display/ResourceBar";
 //import ResourceBar from "../display/ResourceBar";
 //import { RoadInterface } from "../types";
 
@@ -388,7 +389,7 @@ export default function BoardLogic({
         messageColor={gameState.actionMessage.color}
       />
 
-      {/* <ResourceBar gameState={gameState} /> */}
+      <ResourceBar gameState={gameState} />
     
       <Tiles
         gameName={gameState.gameName}
