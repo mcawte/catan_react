@@ -433,7 +433,7 @@ export default function GameChat(
             </div>
                       </div>
 
-                      <div className="bg-green-300 flex-1 overflow-y-scroll border-4 border-green-900">
+                      <div className="bg-green-300 h-20% overflow-y-scroll border-4 border-green-900">
                         
                         {/* chat */}
                         
