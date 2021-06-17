@@ -286,7 +286,7 @@ export default function GameChat(
                     min: 0,
                   },
                 }}
-                fullWidth
+                
                 value={props.gameState.currentTrade.offers.forest}
                 onChange={(e) => setPropose(e, "offers")}
               />
@@ -301,7 +301,7 @@ export default function GameChat(
                     min: 0,
                   },
                 }}
-                fullWidth
+                
                 value={props.gameState.currentTrade.offers.brick}
                 onChange={(e) => setPropose(e, "offers")}
               />
@@ -316,7 +316,7 @@ export default function GameChat(
                     min: 0,
                   },
                 }}
-                fullWidth
+                
                 value={props.gameState.currentTrade.offers.sheep}
                 onChange={(e) => setPropose(e, "offers")}
               />
@@ -331,7 +331,7 @@ export default function GameChat(
                     min: 0,
                   },
                 }}
-                fullWidth
+                
                 value={props.gameState.currentTrade.offers.stone}
                 onChange={(e) => setPropose(e, "offers")}
               />
@@ -346,7 +346,7 @@ export default function GameChat(
                     min: 0,
                   },
                 }}
-                fullWidth
+                
                 value={props.gameState.currentTrade.offers.wheat}
                 onChange={(e) => setPropose(e, "offers")}
               />
@@ -366,7 +366,7 @@ export default function GameChat(
                     min: 0,
                   },
                 }}
-                fullWidth
+                
                 value={props.gameState.currentTrade.inReturnFor.forest}
                 onChange={(e) => setPropose(e, "inReturnFor")}
               />
@@ -381,7 +381,7 @@ export default function GameChat(
                     min: 0,
                   },
                 }}
-                fullWidth
+                
                 value={props.gameState.currentTrade.inReturnFor.brick}
                 onChange={(e) => setPropose(e, "inReturnFor")}
               />
@@ -396,7 +396,7 @@ export default function GameChat(
                     min: 0,
                   },
                 }}
-                fullWidth
+                
                 value={props.gameState.currentTrade.inReturnFor.sheep}
                 onChange={(e) => setPropose(e, "inReturnFor")}
               />
@@ -411,7 +411,7 @@ export default function GameChat(
                     min: 0,
                   },
                 }}
-                fullWidth
+                
                 value={props.gameState.currentTrade.inReturnFor.stone}
                 onChange={(e) => setPropose(e, "inReturnFor")}
               />
@@ -426,7 +426,7 @@ export default function GameChat(
                     min: 0,
                   },
                 }}
-                fullWidth
+                
                 value={props.gameState.currentTrade.inReturnFor.wheat}
                 onChange={(e) => setPropose(e, "inReturnFor")}
               />
