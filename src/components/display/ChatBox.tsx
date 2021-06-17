@@ -102,7 +102,7 @@ export default function ChatBox({gameName, playerName, chatMessages, children}: 
                     rounded-lg flex"
                   >
                     <div className="w-1/3 bg-red-400">
-                      <div className="bg-blue-200 h-20v">
+                      <div className="bg-blue-200 h-10v">
 
 {/* top */}
 
