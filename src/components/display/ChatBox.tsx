@@ -49,7 +49,7 @@ interface ChatBoxInterface {
 }
 
 export default function ChatBox({gameName, playerName, chatMessages, children}: ChatBoxInterface) {
-  const classes = useStyles();
+ // const classes = useStyles();
 
   const [localChatState, setLocalChatState] = useState({
       gameNameInputField: "",
