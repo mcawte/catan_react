@@ -1,5 +1,4 @@
 import { Grid } from "@material-ui/core";
-import React from "react";
 import {  PublicGameState } from "../../../shared_types/types";
 
 
@@ -28,7 +27,7 @@ export default function ResourceBar({
        left: 0,
        bottom: 0,
        width: "100%",
-       height: "12vh",
+       height: "6vh",
        backgroundColor: "Coral",
        color: "black",
        textAlign: "center",
@@ -62,7 +61,7 @@ Roads: {JSON.stringify(gameState.player.inventory.roads)}, Towns:{" "}
 </Grid>
 </Grid>
 </Grid>
-<Grid item>
+{/* <Grid item>
 <Grid container direction="row" justify="center" alignItems="center"  spacing={10}>
 DevCards in hand: <br />
             {Object.entries(gameState.player.inventory.devCards).map(
@@ -81,8 +80,8 @@ DevCards in hand: <br />
               }
             )}
 </Grid>
-</Grid>
-<Grid item>
+</Grid> */}
+{/* <Grid item>
 <Grid container direction="row" justify="center" alignItems="center"  spacing={8}>
 Played devCards: <br />
             {Object.entries(gameState.player.inventory.devCards).map(
@@ -94,7 +93,7 @@ Played devCards: <br />
                     {`${key}: ${
                       value.filter((eachValue) => eachValue.roundPlayed > 0)
                         .length
-                    } `}
+                    // } `}
                     <br />
                   </div>
                   </Grid>
@@ -102,7 +101,7 @@ Played devCards: <br />
               }
             )}
 </Grid>
-</Grid>
+</Grid> */}
 </Grid>
     </div>
   );

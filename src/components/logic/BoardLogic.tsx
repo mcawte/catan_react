@@ -308,9 +308,8 @@ export default function BoardLogic({
             roundTownPlaced: 0,
             roundCityPlaced: 0,
           };
-          newState.tiles[tileIndex].settlements[
-            settlementToUpdateIndex
-          ] = noTown;
+          newState.tiles[tileIndex].settlements[settlementToUpdateIndex] =
+            noTown;
           break;
         case "town":
           console.log("got to town case");
@@ -325,9 +324,8 @@ export default function BoardLogic({
                 : gameState.round,
             roundCityPlaced: 0,
           };
-          newState.tiles[tileIndex].settlements[
-            settlementToUpdateIndex
-          ] = newTown;
+          newState.tiles[tileIndex].settlements[settlementToUpdateIndex] =
+            newTown;
           newState.player.inventory.towns--;
           break;
         case "city":
@@ -340,9 +338,8 @@ export default function BoardLogic({
             roundTownPlaced: settlementToUpdate.roundTownPlaced,
             roundCityPlaced: gameState.round,
           };
-          newState.tiles[tileIndex].settlements[
-            settlementToUpdateIndex
-          ] = newCity;
+          newState.tiles[tileIndex].settlements[settlementToUpdateIndex] =
+            newCity;
           newState.player.inventory.cities--;
           break;
         default:
@@ -390,7 +387,7 @@ export default function BoardLogic({
       />
 
       <ResourceBar gameState={gameState} />
-    
+
       <Tiles
         gameName={gameState.gameName}
         playerName={gameState.player.name}
@@ -419,6 +416,7 @@ export default function BoardLogic({
       </div>
       <div style={{ marginLeft: "55vw", marginTop: "4vh" }}>
         <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={() =>
             socket.emit("rollDice", gameState?.gameName, gameState?.player.name)
           }
@@ -432,6 +430,7 @@ export default function BoardLogic({
           Roll Dice
         </button>
         <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={() =>
             setModals((prevState) => ({ ...prevState, trade: true }))
           }
@@ -447,6 +446,7 @@ export default function BoardLogic({
         </button>
 
         <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={() => setTradeModal({ open: true })}
           disabled={gameState.playerTurn.stage !== 4}
         >
@@ -454,6 +454,7 @@ export default function BoardLogic({
         </button>
 
         <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={() =>
             socket.emit(
               "endTurn",
@@ -476,6 +477,7 @@ export default function BoardLogic({
       <div style={{ marginLeft: "55vw", marginTop: "1vh" }}>
         {itemTypes.map((itemToBuy) => (
           <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={() =>
               socket.emit(
                 "buyItem",
@@ -499,6 +501,7 @@ export default function BoardLogic({
                 return gameState.player.inventory.devCards[devCardKey].length >
                   0 && devCardKey !== "victory" ? (
                   <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     onClick={() => {
                       if (devCardKey === "monopoly") {
                         setModals((prevState) => ({
@@ -533,6 +536,7 @@ export default function BoardLogic({
         {gameState.playerTurn.player.name === gameState.player.name &&
         gameState.playerTurn.stage === 2 ? (
           <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={() =>
               socket.emit(
                 "newRobberPosition",
@@ -557,6 +561,7 @@ export default function BoardLogic({
         gameState.playerTurn.stage === 3
           ? gameState.robber.playersToStealFrom.map((playerToStealFrom) => (
               <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 onClick={() =>
                   socket.emit(
                     "stealFrom",
