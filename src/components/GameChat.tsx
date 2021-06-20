@@ -19,24 +19,12 @@ import useChatMessages from "../hooks/useChatMessages";
 import useCurrentPlayers from "../hooks/useCurrentPlayers";
 import { PublicGameState} from "../../shared_types/types";
 
-// const useStyles = makeStyles({
-//   table: {
-//     minHeight: "500px",
-//   },
-//   chatSection: {
-//     width: "100%",
-//     height: "80vh",
-//     minHeight: "500px",
-//   },
-//   borderRight500: {
-//     borderRight: "1px solid #e0e0e0",
-//   },
-//   messageArea: {
-//     height: "5vh",
-//     minHeight: "300px",
-//     overflowY: "auto",
-//   },
-// });
+
+
+interface Player {
+  name: string;
+  avatar: number;
+}
 
 interface GameChatProps {
   gameState: PublicGameState;
@@ -63,6 +51,8 @@ export default function GameChat(
 
   const chatMessages = useChatMessages(props.gameState.gameName);
   const currentPlayers = useCurrentPlayers(props.gameState.gameName);
+
+
 
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
@@ -178,8 +168,8 @@ export default function GameChat(
                     className="shadow  h-70v mt-4 mx-auto bg-green-200 
                     rounded-lg flex"
                   >
-                    <div className="w-1/3 bg-red-400">
-                      <div className="bg-blue-200 h-10v">
+                    <div className="w-1/3 bg-gray-300">
+                      <div className="bg-gray-300 h-10v">
 
 {/* top */}
 <Box paddingLeft={2}>
@@ -192,7 +182,7 @@ export default function GameChat(
                   <ListItemIcon>
                     <Avatar
                       alt="JJ"
-                      src="https://material-ui.com/static/images/avatar/1.jpg"
+                      src={`avatars/a${currentPlayers.find(eachPlayer => eachPlayer.name === props.gameState.player.name)?.avatar}.svg`}
                     />
                   </ListItemIcon>
                   <ListItemText>{props.gameState.player.name}</ListItemText>
@@ -201,11 +191,11 @@ export default function GameChat(
 
                     
                       </div>
-                      <div>
+                      
                         
                         
                         {/* bottom */}
-                        
+                        <div>
                         <Button
                   variant="contained"
                   color="primary"
@@ -269,9 +259,9 @@ export default function GameChat(
                         </div>
                     </div>
 
-                    <div className="w-2/3 bg-yellow-200 flex-row">
+                    <div className="w-2/3 flex-row">
 
-                    <div className="bg-green-300 h-55% overflow-y-scroll border-4 border-green-700">
+                    <div className="bg-green-200 h-55% overflow-y-scroll border-2 border-indigo-300">
                       <div>
                       
               Propose
@@ -431,12 +421,15 @@ export default function GameChat(
                 value={props.gameState.currentTrade.inReturnFor.wheat}
                 onChange={(e) => setPropose(e, "inReturnFor")}
               />
+
+
+
             </div>
 
             </div>
                       </div>
 
-                      <div className="bg-green-300 h-35% overflow-y-scroll border-4 border-green-900">
+                      <div className="bg-gray-300 h-35% overflow-y-scroll border-2 border-indigo-300">
                         
                         {/* chat */}
                         
@@ -456,7 +449,7 @@ export default function GameChat(
                 
             
                         </div>
-                      <div className="bg-blue-500 bottom-0 h-10%">
+                      <div className="bg-gray-300 bottom-0 h-10%">
                         
                         {/* input */}
                         <div className="flex justify-end content-end">
@@ -886,19 +879,18 @@ function chatMessageBlock(
   );
 }
 
-function avatarBlock(player: any, players?: any) {
+function avatarBlock(player: Player, players?: any) {
   return (
-    <ListItem button key={player}>
+    <ListItem button key={player.name + player.avatar}>
       <ListItemIcon>
         <Avatar
           alt="JJ"
-          src={`https://material-ui.com/static/images/avatar/${
-            Math.floor(Math.random() * 6) + 1
-          }.jpg`}
+          //src={`https://material-ui.com/static/images/avatar/${Math.floor(Math.random() * 6) + 1}.jpg`}
+          src={`avatars/a${player.avatar}.svg`}
         />
       </ListItemIcon>
 
-      <ListItemText>{player}</ListItemText>
+      <ListItemText>{player.name}</ListItemText>
 
       <ListItemText
         secondary={players ? `${players} Players` : "red"}

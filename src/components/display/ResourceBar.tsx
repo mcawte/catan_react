@@ -1,4 +1,5 @@
 import { Grid } from "@material-ui/core";
+import { marginBottom } from "styled-system";
 import {  PublicGameState } from "../../../shared_types/types";
 
 
@@ -22,21 +23,10 @@ export default function ResourceBar({
   } = { brick: "🧱", forest: "🌲", stone: "⛰️", wheat: "🌾", sheep: "🐏" };
 
   return (
-    <div style={{
-       position: "fixed",
-       left: 0,
-       bottom: 0,
-       width: "100%",
-       height: "6vh",
-       backgroundColor: "Coral",
-       color: "black",
-       textAlign: "center",
-       zIndex: 99,
-       overflow: "auto"
-
-       }}>
-         <Grid container direction="column"  spacing={2}>
-           <Grid item>
+   
+    <div className="fixed left-0 bottom-0 w-full h-14 bg-blue-300 z-50">
+         {/* <Grid container direction="column"  spacing={2}>
+           <Grid item> */}
          <Grid container direction="row" justify="center" alignItems="center"  spacing={10}>
       {Object.entries(gameState.player.inventory.resources).map(
   ([key, value]) => {
@@ -59,8 +49,8 @@ Roads: {JSON.stringify(gameState.player.inventory.roads)}, Towns:{" "}
         {JSON.stringify(gameState.player.inventory.towns)}, Cities:{" "}
         {JSON.stringify(gameState.player.inventory.cities)}
 </Grid>
-</Grid>
-</Grid>
+{/* </Grid>
+</Grid> */}
 {/* <Grid item>
 <Grid container direction="row" justify="center" alignItems="center"  spacing={10}>
 DevCards in hand: <br />

@@ -17,23 +17,31 @@ import {  AddBox } from "@material-ui/icons";
 
 interface GameList {
   gameName: string;
-  players: number;
-  playerNames: string[];
+  numberOfPlayers: number;
+  players: {
+      name: string;
+      avatar: number;
+  }[];
 }
 
 interface ChatSideBarInterface {
   lobby: boolean;
   gameName: string;
-  playerName: string;
+  player: {name: string, avatar: number};
   lobbyPlayers?: number;
   games?: GameList[];
-  players?: string[]
+  players?: {name: string, avatar: number}[]
+}
+
+interface Player {
+  name: string;
+  avatar: number
 }
 
 export default function ChatSideBar({
   lobby,
   gameName,
-  playerName,
+  player,
   lobbyPlayers,
   games,
   players,
@@ -44,9 +52,9 @@ export default function ChatSideBar({
     gameNameInputField: "",
   });
 
-  const changeGame = (gameName: string, playerName: string) => {
+  const changeGame = (gameName: string, player: {name: string, avatar: number}) => {
     console.log("Should be trying to join game room");
-    socket.emit("joinGame", gameName, playerName);
+    socket.emit("joinGame", gameName, player);
     setLocalChatBarState((prevState) => ({
       ...prevState,
       gameNameInputField: "",
@@ -55,6 +63,7 @@ export default function ChatSideBar({
 
   return (
     <>
+    
       {lobby ? (
         <Grid item xs={12} style={{ padding: "10px" }}>
           <Grid container>
@@ -77,7 +86,7 @@ export default function ChatSideBar({
                     socket.emit(
                       "joinGame",
                       localChatBarState.gameNameInputField,
-                      playerName
+                      player
                     );
                     setLocalChatBarState((prevState) => ({
                       ...prevState,
@@ -97,7 +106,7 @@ export default function ChatSideBar({
                   socket.emit(
                     "joinGame",
                     localChatBarState.gameNameInputField,
-                    playerName
+                    player
                   );
                   //setPrevMessages([])
 
@@ -125,7 +134,7 @@ export default function ChatSideBar({
 
               console.log("Should be trying to go back to lobby");
 
-              (playerName !== "") ? socket.emit("joinGame", "lobby", playerName) : (<div></div>);
+              (player.name !== "") ? socket.emit("joinGame", "lobby", player) : (<div></div>);
 
               setLocalChatBarState((prevState) => ({
                 ...prevState,
@@ -172,43 +181,46 @@ export default function ChatSideBar({
           <ListItem>
             <ListItemText>Players</ListItemText>
           </ListItem>
+          
         )}
+        
         {lobby
-          ? games!.map((game) =>
-              game.gameName === "lobby" || game.players < 1
+          ? games!.map((game: GameList) =>
+              game.gameName === "lobby" || game.players.length < 1
                 ? null
-                : avatarBlock(game.gameName, changeGame, playerName, game.players)
+                : avatarBlock(game.gameName, game.players[0].avatar, player, changeGame, game.numberOfPlayers)
             )
-          : players!.map((player) => avatarBlock(player, changeGame, playerName))}
+          : players!.map((eachPlayer) => avatarBlock(eachPlayer.name, eachPlayer.avatar))}
+          
       </List>
+      
     </>
   );
 }
 
-function avatarBlock(player: any, changeRoom: any, playerName: string, players?: any) {
+function avatarBlock(avatarName: string, avatarNumber: number, currentPlayer?: Player, changeRoom?: any , numberOfPlayers?: any) {
   return (
-    <ListItem button key={player}>
+    <ListItem button key={avatarName + avatarNumber}>
       <ListItemIcon>
         <Avatar
           alt="JJ"
-          src={`https://material-ui.com/static/images/avatar/${
-            Math.floor(Math.random() * 6) + 1
-          }.jpg`}
+          //src={`https://material-ui.com/static/images/avatar/${Math.floor(Math.random() * 6) + 1}.jpg`}
+          src={`avatars/a${avatarNumber}.svg`}
         />
       </ListItemIcon>
-      {players ? (
+      {numberOfPlayers ? (
         <Button
           variant="outlined"
           color="primary"
-          onClick={(e) => changeRoom(player, playerName)}
+          onClick={(e) => changeRoom(avatarName, currentPlayer)}
         >
-          <ListItemText>{player}</ListItemText>
+          <ListItemText>{avatarName}</ListItemText>
         </Button>
       ) : (
-        <ListItemText>{player}</ListItemText>
+        <ListItemText>{avatarName}</ListItemText>
       )}
       <ListItemText
-        secondary={players ? `${players} Players` : "red"}
+        secondary={numberOfPlayers ? `${numberOfPlayers} Players` : "red"}
         style={{ textAlign: "right" }}
       ></ListItemText>
     </ListItem>

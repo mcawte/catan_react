@@ -8,6 +8,10 @@ export default function useChatMessages(
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
 
   useEffect(() => {
+    socket.emit("getChatHistory",gameName)
+  },[gameName])
+
+  useEffect(() => {
     socket.on("chatMessage", (msg: ChatMessage) => {
       console.log(
         "Message from server to frontend by player " +

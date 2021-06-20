@@ -54,7 +54,7 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
   const topShift =
     (props.tileSize / 2) * Math.sqrt(3) * props.row * props.gridSpace;
 
-  const textFontSize = tileWidth / 6;
+  const textFontSize = tileWidth / 4;
 
   return (
     <>
@@ -88,13 +88,14 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
                 className="tileNumber"
                 style={{
                   fontSize: `${textFontSize}px`,
+                  fontWeight: "bolder",
                   // textShadow: `-${textFontSize}px -${textFontSize}px 0 #000, ${textFontSize}px -${textFontSize}px 0 #000, -${textFontSize}px ${textFontSize}px 0 #000, ${
                   //   0.05 * textFontSize
                   // }px ${0.05 * textFontSize}px 0 #000`,
                   textShadow: `${0.1 * textFontSize}px ${0.1 * textFontSize}px #000`,
                   // WebkitTextStroke: "10px black",
                   WebkitTextFillColor: "white",
-                  WebkitTextStrokeWidth: `${0.075 * textFontSize}px`,
+                  WebkitTextStrokeWidth: `${0.025 * textFontSize}px`,
                   WebkitTextStrokeColor: "black"
                 }}
               >
@@ -103,8 +104,9 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
                   //   {/* <GiRobber style={{fontSize: "1.5x", color: "black"}} > <GiRobber style={{position: "absolute",fontSize: "1.3x", color: "white"}} /></GiRobber> */}
                     
                   // {/* </Robber> */}
-
+                  <div className="relative left-1/3">
                   <GiRobber size={`${tileWidth / 2.8}px`} color="purple" />
+                 </div>
                 ) : (
                   <h1>{props.tileNumber}</h1>
                 )}

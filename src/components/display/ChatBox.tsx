@@ -13,44 +13,36 @@ import {
   Box,
 } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
+import DropDown from "./DropDown";
 
 
 
-// const useStyles = makeStyles({
-//   table: {
-//     minHeight: "500px",
-//   },
-//   chatSection: {
-//     width: "100%",
-//     height: "80vh",
-//     minHeight: "500px",
-//   },
-//   headBG: {
-//     backgroundColor: "#e0e0e0",
-//   },
-//   borderRight500: {
-//     borderRight: "1px solid #e0e0e0",
-//   },
-//   messageArea: {
-//     //height: "70vh",
-//     //minHeight: "400px",
-//     overflowY: "auto",
-//   },
-// });
 
 
 
 interface ChatBoxInterface {
     gameName: string;
-    playerName: string;
+    player: {name: string, avatar: number};
+    chatState: {
+      playerName: string;
+      avatar: number;
+      gameName: string;
+      open: boolean;
+  };
+    setChatState: React.Dispatch<React.SetStateAction<{
+      playerName: string;
+      avatar: number;
+      gameName: string;
+      open: boolean;
+  }>>;
     chatMessages: { playerName: string; message: string; time: number }[];
     children: ReactNode | ReactNode[]
 }
 
-export default function ChatBox({gameName, playerName, chatMessages, children}: ChatBoxInterface) {
+export default function ChatBox({chatState, setChatState,gameName, player, chatMessages, children}: ChatBoxInterface) {
  // const classes = useStyles();
 
-  const [localChatState, setLocalChatState] = useState({
+  const [inputChatState, setInputChatState] = useState({
       gameNameInputField: "",
       messageInputField: ""
   })
@@ -68,15 +60,21 @@ export default function ChatBox({gameName, playerName, chatMessages, children}: 
     scrollToBottom();
   }, [chatMessages]);
 
+  const openProfile = () => {
+    setChatState((state) => ({
+      ...state,
+      open: !state.open,
+    }))
+  }
  
-
+let dropDownOptions = [{name: "Profile", id: 1, onClick: openProfile}];
 
   return (
     <>
     
-    <div className="min-h-screen">
+    <div className="">
         {/* body */}
-        <div className="h-90v">
+        <div className="h-full">
     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-2/3 mx-auto max-w-3xl">
               {/*content*/}
@@ -85,23 +83,26 @@ export default function ChatBox({gameName, playerName, chatMessages, children}: 
                 <div className="flex items-start justify-between p-5 pb-0 border-b border-solid border-blueGray-200 rounded-t">
                   <h3 className="text-3xl font-semibold">Catan</h3>
 
+
+
                   {/* <button
                     className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => chatProps.setShowChat(false)}
+                    
                   >
                     <span className="bg-transparent text-black h-6 w-6 text-2xl block outline-none focus:outline-none">
                       ×
                     </span>
                   </button> */}
+                  <DropDown options={dropDownOptions}/>
                 </div>
                 {/*body*/}
-                <div className="relative p-6 pt-0  flex-auto">
+                <div className="p-6 pt-0  flex-auto">
                   <div
-                    className="shadow  h-70v mt-4 mx-auto bg-green-200 
+                    className="shadow  h-70v mt-4 mx-auto bg-gray-300 
                     rounded-lg flex"
                   >
-                    <div className="w-1/3 bg-red-400">
-                      <div className="bg-blue-200 h-10v">
+                    <div className="w-1/3 bg-gray-300">
+                      <div className="bg-gray-300 h-10v">
 
 {/* top */}
 
@@ -113,10 +114,10 @@ export default function ChatBox({gameName, playerName, chatMessages, children}: 
                   <ListItemIcon>
                     <Avatar
                       alt="JJ"
-                      src="https://material-ui.com/static/images/avatar/1.jpg"
+                      src={`/avatars/a${player.avatar}.svg`}
                     />
                   </ListItemIcon>
-                  <ListItemText>{playerName}</ListItemText>
+                  <ListItemText>{player.name}</ListItemText>
                 </ListItem>
               </List>
                       </div>
@@ -130,8 +131,8 @@ export default function ChatBox({gameName, playerName, chatMessages, children}: 
                         </div>
                     </div>
 
-                    <div className="w-2/3 bg-yellow-200 flex-row">
-                      <div className="bg-green-300 h-90% overflow-y-scroll border-4 border-green-900">
+                    <div className="w-2/3 flex-row">
+                      <div className="bg-gray-300 h-90% overflow-y-scroll border-2 border-indigo-300">
                         
                         {/* chat */}
                         
@@ -151,7 +152,7 @@ export default function ChatBox({gameName, playerName, chatMessages, children}: 
                 
             
                         </div>
-                      <div className="bg-blue-500 bottom-0 h-10%">
+                      <div className="bg-gray-300 bottom-0 h-10%">
                         
                         {/* input */}
                         <div className="flex justify-end content-end">
@@ -160,9 +161,9 @@ export default function ChatBox({gameName, playerName, chatMessages, children}: 
                   id="outlined-basic-email"
                   label="Type something"
                   fullWidth
-                  value={localChatState.messageInputField}
+                  value={inputChatState.messageInputField}
                   onChange={(e) =>
-                    setLocalChatState((state) => ({
+                    setInputChatState((state) => ({
                       ...state,
                       messageInputField: e.target.value,
                     }))
@@ -172,11 +173,11 @@ export default function ChatBox({gameName, playerName, chatMessages, children}: 
                       socket.emit(
                         "chatMessage",
                         gameName,
-                        playerName,
-                        localChatState.messageInputField
+                        player.name,
+                        inputChatState.messageInputField
                       );
 
-                      setLocalChatState((state) => ({
+                      setInputChatState((state) => ({
                         ...state,
                         messageInputField: "",
                       }));
@@ -195,11 +196,11 @@ export default function ChatBox({gameName, playerName, chatMessages, children}: 
                     socket.emit(
                       "chatMessage",
                       gameName,
-                      playerName,
-                      localChatState.messageInputField
+                      player.name,
+                      inputChatState.messageInputField
                     );
 
-                    setLocalChatState((state) => ({
+                    setInputChatState((state) => ({
                       ...state,
                       messageInputField: "",
                     }));
@@ -224,110 +225,7 @@ export default function ChatBox({gameName, playerName, chatMessages, children}: 
                   </div>
     </div>
     
-      {/* <Box m={2}>
-        <Container maxWidth="md">
-          <Grid container component={Paper} className={classes.chatSection}>
-            <Grid item xs={3} className={classes.borderRight500}>
-              <Box paddingLeft={2}>
-                <Typography variant="h5">In: {gameName}</Typography>
-              </Box>
-              <List>
-                <ListItem button key="JJ">
-                  <ListItemIcon>
-                    <Avatar
-                      alt="JJ"
-                      src="https://material-ui.com/static/images/avatar/1.jpg"
-                    />
-                  </ListItemIcon>
-                  <ListItemText>{playerName}</ListItemText>
-                </ListItem>
-              </List>
-              <Divider />
-              {children}
-
-              
-
-              <Divider />    
-            </Grid>
-            
-                  
-                
-            <Grid item xs={9} className={classes.messageArea}>
-              <Container style={{ height: "65vh" }}>
-                <List>
-                  {chatMessages.map((chatMessage, index) =>
-                    chatMessageBlock(
-                      index,
-                      chatMessage.message,
-                      chatMessage.playerName,
-                      chatMessage.time
-                    )
-                  )}
-                  <div ref={messagesEndRef} />
-                </List>
-
-                <Divider />
-              </Container>
-            </Grid>
-
-            <Grid container justify="flex-end">
-              <Grid item xs={8}>
-                <TextField
-                  id="outlined-basic-email"
-                  label="Type something"
-                  fullWidth
-                  value={localChatState.messageInputField}
-                  onChange={(e) =>
-                    setLocalChatState((state) => ({
-                      ...state,
-                      messageInputField: e.target.value,
-                    }))
-                  }
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      socket.emit(
-                        "chatMessage",
-                        gameName,
-                        playerName,
-                        localChatState.messageInputField
-                      );
-
-                      setLocalChatState((state) => ({
-                        ...state,
-                        messageInputField: "",
-                      }));
-                    }
-                  }}
-                />
-              </Grid>
-              <Grid container alignItems="flex-end">
-              <Grid item xs={1} >
-                <Fab
-                  color="primary"
-                  aria-label="add"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    socket.emit(
-                      "chatMessage",
-                      gameName,
-                      playerName,
-                      localChatState.messageInputField
-                    );
-
-                    setLocalChatState((state) => ({
-                      ...state,
-                      messageInputField: "",
-                    }));
-                  }}
-                >
-                  <Send />
-                </Fab>
-              </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Container>
-      </Box> */}
+    
       </>
     
   );

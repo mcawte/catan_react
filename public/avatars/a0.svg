@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 54.266041 54.266041"
+   height="54.266041mm"
+   width="54.266041mm">
+  <defs
+     id="defs2">
+    <clipPath
+       id="clipPath2444"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path2442"
+         d="m 87.298,2047.988 c -12.367,0 -22.391,-10.024 -22.391,-22.389 v 0 -83.06 c 0,-12.367 10.024,-22.39 22.391,-22.39 v 0 h 83.058 c 12.367,0 22.391,10.023 22.391,22.39 v 0 83.06 c 0,12.365 -10.024,22.389 -22.391,22.389 v 0 z" />
+    </clipPath>
+    <clipPath
+       id="SVGID_14_">
+      <use
+         xlink:href="#SVGID_13_"
+         style="overflow:visible"
+         id="use1204"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </clipPath>
+    <path
+       id="SVGID_13_"
+       d="m 694.5,450.6 -28.3,-1.2 c -0.1,0.5 2.2,16.4 2.9,19.5 1.2,4.2 6.1,37.5 11.8,37.8 6.1,0.3 9.8,-33.2 10.9,-39.5 z" />
+    <clipPath
+       id="SVGID_8_">
+      <use
+         xlink:href="#SVGID_7_"
+         style="overflow:visible"
+         id="use1110"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </clipPath>
+    <clipPath
+       id="SVGID_10_">
+      <use
+         xlink:href="#SVGID_9_"
+         style="overflow:visible"
+         id="use1120"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </clipPath>
+    <path
+       id="SVGID_7_"
+       d="m 537.3,480.6 c 0,19.8 -16.1,35.9 -35.9,35.9 H 368 c -19.9,0 -35.9,-16.1 -35.9,-35.9 V 347.3 c 0,-19.9 16.1,-35.9 35.9,-35.9 h 133.3 c 19.9,0 35.9,16.1 35.9,35.9 v 133.3 z" />
+    <path
+       id="SVGID_9_"
+       d="M 448.4,448.5 429.6,447 c -0.1,0.6 1,32.1 1.4,35.9 1.6,10.6 15.8,13.4 17.2,-1.7 z" />
+    <clipPath
+       id="SVGID_22_">
+      <use
+         xlink:href="#SVGID_21_"
+         style="overflow:visible"
+         id="use1352"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </clipPath>
+    <path
+       id="SVGID_21_"
+       d="m 1031.6,480.6 c 0,19.9 -16.1,35.9 -35.9,35.9 H 862.4 c -19.9,0 -35.9,-16.1 -35.9,-35.9 V 347.3 c 0,-19.9 16.1,-35.9 35.9,-35.9 h 133.3 c 19.9,0 35.9,16.1 35.9,35.9 z" />
+  </defs>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-290.63207,-216.68507)"
+     id="layer1">
+    <g
+       transform="matrix(0.26458333,0,0,0.26458333,71.953947,134.29382)"
+       id="g1371">
+      <path
+         class="st51"
+         d="m 1031.6,480.6 c 0,19.9 -16.1,35.9 -35.9,35.9 H 862.4 c -19.9,0 -35.9,-16.1 -35.9,-35.9 V 347.3 c 0,-19.9 16.1,-35.9 35.9,-35.9 h 133.3 c 19.9,0 35.9,16.1 35.9,35.9 z"
+         id="path1345"
+         style="fill:#ffffff" />
+      <g
+         id="g1369">
+        <defs
+           id="defs1348">
+          <path
+             id="path7676"
+             d="m 1031.6,480.6 c 0,19.9 -16.1,35.9 -35.9,35.9 H 862.4 c -19.9,0 -35.9,-16.1 -35.9,-35.9 V 347.3 c 0,-19.9 16.1,-35.9 35.9,-35.9 h 133.3 c 19.9,0 35.9,16.1 35.9,35.9 z" />
+        </defs>
+        <use
+           xlink:href="#SVGID_21_"
+           style="overflow:visible;fill:#eccc94"
+           id="use1350"
+           x="0"
+           y="0"
+           width="100%"
+           height="100%" />
+        <clipPath
+           id="clipPath7640">
+          <use
+             xlink:href="#SVGID_21_"
+             style="overflow:visible"
+             id="use7638"
+             x="0"
+             y="0"
+             width="100%"
+             height="100%" />
+        </clipPath>
+        <g
+           class="st52"
+           clip-path="url(#SVGID_22_)"
+           id="g1367">
+          <path
+             class="st7"
+             d="m 938.8,465 -32.6,-1.2 c -30.1,0 -56,-52.5 -56,-83.9 0,-41.7 13,-57.7 57.5,-52.8 23.2,2.6 55.3,21.2 65.9,39.8 15.5,27.2 66.3,94.8 11.5,114.3 -16.5,5.9 -43.1,-7.8 -46.3,-16.2 z"
+             id="path1355"
+             style="clip-rule:evenodd;fill:#010002;fill-rule:evenodd" />
+          <path
+             class="st7"
+             d="m 917.7,475.2 c 7.9,-0.7 17.2,-1.1 26.8,0.3 29.3,2.3 31.1,30.6 34.3,45.8 -31.6,0.2 -63.1,0.4 -94.7,0.6 0,-18.6 9.5,-44.6 33.6,-46.7 z"
+             id="path1357"
+             style="clip-rule:evenodd;fill:#010002;fill-rule:evenodd" />
+          <path
+             class="st53"
+             d="m 936.1,443.7 -16.6,-1.6 c -0.1,0.7 10.2,39.6 -4.5,36.3 0.1,1.3 -0.1,7.6 0.5,13.7 1.2,12.7 10.3,26.7 12.2,26.8 2.6,0 31.8,-15.8 14.9,-40 l -4.7,-2 z"
+             id="path1359"
+             style="clip-rule:evenodd;fill:#c9a970;fill-rule:evenodd" />
+          <path
+             class="st16"
+             d="m 896.7,374.9 c -14.3,26.4 -12.5,69.2 10.3,89.8 17.3,15.7 36.9,5.9 51.2,-8.6 7.7,-7.8 6.5,-48.4 0,-55.4 -4.1,-4.4 -2.7,-9.9 -15.5,-15.9 -12.5,-5.8 -26.2,-20.2 -43.1,-13 -0.7,0.4 -2.4,2.2 -2.9,3.1 z"
+             id="path1361"
+             style="clip-rule:evenodd;fill:#efd8aa;fill-rule:evenodd" />
+          <path
+             class="st54"
+             d="m 926.1,407.2 c -1.6,0 -3.5,0.6 -5.9,-0.6 -14.2,-6.8 -12.5,-9.3 -25.9,-7.7 -15,1.7 -18.5,19.7 -9.1,31.7 9,11.5 25.6,7.2 31.7,-7.3 12.1,-28.3 10.7,9.7 32.7,9.7 24.3,0 27,-34.8 8.4,-37.2 -12.8,-1.7 -17.1,0.8 -20.3,3.3 -2.8,2.3 -4.8,4.4 -11.6,8.1 z"
+             id="path1363"
+             style="clip-rule:evenodd;fill:#353535;fill-rule:evenodd" />
+          <path
+             class="st55"
+             d="m 931,439.9 c -2,0 -2.9,1.2 -2.9,1.2 0,0 -0.9,-1.2 -2.9,-1.2 -1.3,0 -4.4,2.2 -7.1,4.3 -1.5,1.2 -3.2,3 -4,3.8 0.9,0.5 3.6,1.3 4.6,2.6 0.9,1.3 4,6.3 9.3,6.3 5.4,0 8.4,-5 9.3,-6.3 0.9,-1.3 3.7,-0.2 4,-2.3 -0.6,-0.6 -1.2,-2.4 -2.4,-3.3 -2.7,-2.3 -6.5,-5.1 -7.9,-5.1 z"
+             id="path1365"
+             style="clip-rule:evenodd;fill:#ae1f16;fill-rule:evenodd" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -8,6 +8,7 @@ import {
   DialogContentText,
   DialogActions,
   Button,
+  Avatar,
 } from "@material-ui/core";
 import useChatMessages from "../../hooks/useChatMessages";
 import useCurrentPlayers from "../../hooks/useCurrentPlayers";
@@ -17,14 +18,18 @@ import ChatSideBar from "../display/ChatSideBar";
 
 interface GameList {
   gameName: string;
-  players: number;
-  playerNames: string[];
+  numberOfPlayers: number;
+  players: {
+      name: string;
+      avatar: number;
+  }[];
 }
 
-export default function Lobby() {
+export default function ChatLogic() {
   const [playerNameTaken, setPlayerNameTaken] = useState(false);
   const [chatState, setChatState] = useState({
     playerName: "",
+    avatar: 0,
     gameName: "lobby",
     open: true,
   });
@@ -35,13 +40,13 @@ export default function Lobby() {
   const lobbyPlayers = useCurrentPlayers("lobby");
 
   useEffect(() => {
-    socket.on("newPlayer", (msg: any) => {
-      console.log("The new player message is: ", msg);
-      if (msg === false) setPlayerNameTaken(true);
-      msg === true
+    socket.on("newPlayer", (playerNameIsTaken: boolean) => {
+      console.log("The player name is already taken?: ", playerNameIsTaken);
+      if (playerNameIsTaken === false) setPlayerNameTaken(true);
+      playerNameIsTaken === true
         ? console.log("Joined the lobby")
         : console.log("Player name already exists");
-      msg === true
+      playerNameIsTaken === true
         ? setChatState((state) => ({
             ...state,
             open: false,
@@ -53,17 +58,21 @@ export default function Lobby() {
       return;
     });
 
-    socket.on("playerName", (msg: any) => {
-      setChatState({ ...chatState, playerName: msg, open: false });
+    // socket.on("playerName", (msg: any) => {
+    //   setChatState({ ...chatState, playerName: msg, open: false });
+    // });
+
+    socket.on("gameJoined", (newGameName: string, player: {name: string, avatar: number}) => {
+      setChatState({
+        ...chatState,
+        gameName: newGameName,
+        playerName: player.name,
+        avatar: player.avatar,
+        open: false,
+      });
     });
 
-    socket.on("gameJoined", (newGameName: string, playerName: string) => {
-      setChatState({...chatState, gameName: newGameName, playerName: playerName, open: false})
-    })
-
-   
-
-    socket.on("currentGames", (msg: any) => {
+    socket.on("currentGames", (msg: GameList[]) => {
       //console.log("The current games are: ", msg);
       setGames(msg);
     });
@@ -71,8 +80,8 @@ export default function Lobby() {
     return () => {
       //socket.disconnect();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[socket]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [socket]);
 
   return (
     <>
@@ -87,14 +96,16 @@ export default function Lobby() {
       </div>
 
       <ChatBox
+      chatState={chatState}
+      setChatState={setChatState}
         gameName={chatState.gameName}
-        playerName={chatState.playerName}
+        player={{name: chatState.playerName, avatar: chatState.avatar}}
         chatMessages={chatMessages}
       >
         <ChatSideBar
           lobby={chatState.gameName === "lobby" ? true : false}
           gameName={chatState.gameName}
-          playerName={chatState.playerName}
+          player={{name: chatState.playerName, avatar: chatState.avatar}}
           lobbyPlayers={lobbyPlayers.length}
           players={currentPlayers}
           games={games}
@@ -106,14 +117,33 @@ export default function Lobby() {
 
 function dialogBlock(
   socket: Socket,
-  chatState: { open: boolean; playerName: unknown },
+  chatState: {
+  playerName: string;
+  avatar: number;
+  gameName: string;
+  open: boolean;
+},
   playerNameTaken: boolean,
-  setChatState: (arg0: (state: any) => any) => void,
+  setChatState: React.Dispatch<React.SetStateAction<{
+    playerName: string;
+    avatar: number;
+    gameName: string;
+    open: boolean;
+}>>,
   setPlayerNameTaken: React.Dispatch<React.SetStateAction<boolean>>
 ) {
   return (
     <Dialog open={chatState.open} aria-labelledby="enter-username">
-      <DialogTitle id="form-dialog-title">Player name</DialogTitle>
+      <DialogTitle id="form-dialog-title">Player name
+      <button
+                    className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                    // onClick={}
+                  >
+                    <span className="bg-transparent text-black h-6 w-6 text-2xl block outline-none focus:outline-none">
+                      ×
+                    </span>
+                  </button>
+                  </DialogTitle>
       <DialogContent>
         <DialogContentText>Please choose a player name.</DialogContentText>
         <TextField
@@ -130,22 +160,32 @@ function dialogBlock(
           margin="dense"
           id="name"
           value={chatState.playerName}
-          label="Player Name"
+          label="Type player name here"
           type="string"
           fullWidth
           onKeyDown={(e) => {
             if (!playerNameTaken && e.key === "Enter") {
-              socket.emit("newPlayer", chatState.playerName);
+              socket.emit("newPlayer", {name: chatState.playerName, avatar: chatState.avatar});
             }
           }}
         />
+        <br/>
+        <br/>
+        <DialogContentText>Select your avatar</DialogContentText>
+        <div className="flex flex-wrap">
+          {Array.from(Array(54).keys()).map((index) => (
+            <div className="m-2" key={index} onClick={() => setChatState((state) => ({...state, avatar: index}))}>
+              <Avatar alt={`a${index}`} src={`avatars/a${index}.svg`}/>
+            </div>
+          ))}
+        </div>
       </DialogContent>
       <DialogActions>
         <Button
           onClick={(e) => {
             e.preventDefault();
             if (!playerNameTaken) {
-              socket.emit("newPlayer", chatState.playerName);
+              socket.emit("newPlayer", {name: chatState.playerName, avatar: chatState.avatar});
             }
             return;
           }}

@@ -4,23 +4,36 @@ import { socket } from "../service/socket"
 
 interface Players {
   gameName: string;
-  players: string[];
+  players: {name: string, avatar: number}[];
+}
+
+interface CurrentGames {
+  gameName: string;
+  numberOfPlayers: number;
+  players: {
+      name: string;
+      avatar: number;
+  }[];
 }
 
 // This hook is called too often
-export default function useChatMessages(
+export default function useCurrentPlayers(
   gameName: string
-): string[] {
+):  {
+  name: string;
+  avatar: number;
+}[] {
   
   const [players, setPlayers] = useState<Players[]>();
 
   useEffect(() => {
-    socket.on("currentGames", (msg: any) => {
-      console.log("The current games are: ", msg);
-      let playerList = msg.map((game: any) => ({
-        gameName: game.gameName,
-        players: game.playerNames,
+    socket.on("currentGames", (currentGames: CurrentGames[]) => {
+      console.log("The current games are: ", currentGames);
+      let playerList = currentGames.map((eachGame) => ({
+        gameName: eachGame.gameName,
+        players: eachGame.players,
       }));
+      console.log("The players list is: ", playerList)
       setPlayers(playerList);
     });
 
