@@ -101,7 +101,7 @@ const StyledShipRoute = styled.h1<ShipRouteProps>`
   color: ${(props) =>
     props.playerColor !== null ? props.playerColor : "white"};
   border-style: dashed;
-  z-index: 20;
+  z-index: 90;
   /* width: ${5}px;
   height: ${50}px; */
   width: ${(props) => props.tileWidth / 10}px;
