@@ -113,7 +113,7 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
 
                 {/* <h1>{props.tileNumber}</h1> */}
                 <div
-                  className="tileDots"
+                  
                   style={{
                     color: `${
                       dotRepeats(props.tileNumber) === 5 ? "green" : "blue"
@@ -123,9 +123,10 @@ export default function Tile(props: React.PropsWithChildren<TileProps>) {
                     }`,
                   }}
                 >
-                  <h1
+                  <h1 className="relative"
                     style={{
-                      top: `${(-1 / 5) * tileWidth}px`,
+                      top: `${(-1 / 3) * tileWidth}px`,
+                      fontSize: `${textFontSize*1.3}px`,
                     }}
                   >
                     {".".repeat(dotRepeats(props.tileNumber))}

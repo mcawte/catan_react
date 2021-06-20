@@ -56,9 +56,7 @@ body {
   z-index: 1;
 }
 
-.tileDots h1 {
-  position: relative;
-}
+
 
 .road {
   outline: 1px solid transparent;

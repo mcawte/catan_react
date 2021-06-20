@@ -23,10 +23,10 @@ export default function ResourceBar({
 
   return (
    
-    <div className="fixed left-0 bottom-0 w-full h-14 bg-blue-300 z-50">
+    <div className="overscroll-y-auto fixed left-0 bottom-0 w-full h-14 bg-blue-300 z-50">
          {/* <Grid container direction="column"  spacing={2}>
            <Grid item> */}
-         <Grid container direction="row" justify="center" alignItems="center"  spacing={10}>
+         <Grid container direction="row" justify="center" alignItems="center"  spacing={10} flex-wrap>
       {Object.entries(gameState.player.inventory.resources).map(
   ([key, value]) => {
     return (
