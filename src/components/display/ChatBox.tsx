@@ -72,9 +72,9 @@ let dropDownOptions = [{name: "Profile", id: 1, onClick: openProfile}];
   return (
     <>
     
-    <div className="">
+    <div className="min-h-screen">
         {/* body */}
-        <div className="h-full">
+        <div className="h-90v">
     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-2/3 mx-auto max-w-3xl">
               {/*content*/}

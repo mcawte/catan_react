@@ -37,6 +37,7 @@ export default function BoardLogic({
     yearOfPlenty: false,
   });
 
+
   const emojis: {
     [key: string]: string;
     wheat: string;
@@ -381,13 +382,17 @@ export default function BoardLogic({
 
   return (
     <>
-      <ActionPrompt
+      
+    <div className="">
+      
+      <ResourceBar gameState={gameState} />
+     
+    <div className="h-90v overflow-y-auto overflow-x-hidden">
+
+    <ActionPrompt
         message={gameState.actionMessage.message}
         messageColor={gameState.actionMessage.color}
       />
-
-      <ResourceBar gameState={gameState} />
-
       <Tiles
         gameName={gameState.gameName}
         playerName={gameState.player.name}
@@ -656,7 +661,7 @@ export default function BoardLogic({
         <br />
         Dev card costs: <span style={{ fontSize: "1.5rem" }}>⛰️ 🐏 🌾</span>
       </div>
-
+      
       <Modal
         open={tradeModal.open}
         onClose={() => setTradeModal({ open: false })}
@@ -711,6 +716,8 @@ export default function BoardLogic({
       >
         <TradeOptions gameState={gameState} setModals={setModals} />
       </Modal>
+      </div>
+      </div>
     </>
   );
 }
