@@ -18,8 +18,8 @@ import MonopolyCardOptions from "../display/MonopolyCardOptions";
 import YearOfPlentyCardOptions from "../display/YearOfPlentyCardOptions";
 import RobberOptions from "../display/RobberOptions";
 import ResourceBar from "../display/ResourceBar";
-//import ResourceBar from "../display/ResourceBar";
-//import { RoadInterface } from "../types";
+import useSound from 'use-sound';
+import diceSound from '../../sounds/diceSound.mp3'
 
 interface BoardLogicProps {
   gameState: PublicGameState;
@@ -37,6 +37,7 @@ export default function BoardLogic({
     yearOfPlenty: false,
   });
 
+  const [playDice] = useSound(diceSound);
 
   const emojis: {
     [key: string]: string;
@@ -422,8 +423,10 @@ export default function BoardLogic({
       <div style={{ marginLeft: "55vw", marginTop: "4vh" }}>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={() =>
+          onClick={() => {
             socket.emit("rollDice", gameState?.gameName, gameState?.player.name)
+            playDice()
+          }
           }
           disabled={
             !(
