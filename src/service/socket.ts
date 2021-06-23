@@ -1,8 +1,8 @@
 import { io } from "socket.io-client"
 
-//const socketUrl = "https://mcawte.com"
+const socketUrl = "https://mcawte.com"
 
-const socketUrl = "http://localhost:3001"
+//const socketUrl = "http://localhost:3001"
 
 const localToken = localStorage.getItem('token')
 
